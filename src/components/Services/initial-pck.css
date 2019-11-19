@@ -1,0 +1,42 @@
+.initial-pck{
+    width: 35em;
+    height: 25em;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.initial-pck h5{
+    width: 6em;
+    margin-left: 15em;
+    margin-bottom: -.5em;
+}
+
+.initial-pck ul{
+    padding: 0;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.initial-pck p{
+    font-size: 1.5em;
+}
+
+.info-btn{
+    display: block;
+    padding-top: 1em;
+    border: 1px solid black;
+    width: 7em;
+    height: 3em;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 770px){
+    .initial-pck{
+        width: 90%;
+    }
+
+    .initial-pck h5{
+        margin-left: 25%;
+    }
+}

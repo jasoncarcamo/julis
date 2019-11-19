@@ -1,0 +1,52 @@
+.custom-pck{
+    height: 25em;
+    margin: 2em auto;
+    border: 1px solid black;
+}
+
+.custom-pck h4{
+    width: 100%;
+    text-align: center;
+}
+
+.custom-pck ul{
+    display: grid;
+    margin: 0 auto;
+    grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
+    grid-gap: 1em;
+    padding: 0;
+    font-size: 1.1em;
+}
+
+.custom-pck ul input, .custom-pck ul select{
+    border: 1px solid black;
+    margin-left: 28%;
+}
+
+#custom-price{
+    width: 7em;
+    text-align: center;
+    font-size: 1.3em;
+    margin: 2em auto;
+    padding: 0;
+}
+
+#custom-confirm-btn{
+    display: block;
+    width: 5em;
+    height: 3em;
+    margin: 1em auto 2em auto;
+    font-size: 1em;
+}
+
+
+@media screen and (max-width: 770px){
+
+    .custom-pck ul{
+        grid-gap: 0;
+    }
+
+    .custom-pck ul input, .custom-pck ul select{
+        margin-left: 20%;
+    }
+}
