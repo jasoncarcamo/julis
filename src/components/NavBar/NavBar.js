@@ -43,7 +43,7 @@ export default class NavBar extends React.Component{
 
                         <li>
                             <NavLink 
-                            to="/Services" 
+                            to="/services" 
                             activeStyle={{ fontWeight: "bold"}}
                             className="Link"
                             onClick={this.handleMobileNav}>Services</NavLink>

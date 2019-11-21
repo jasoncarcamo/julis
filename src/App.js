@@ -12,7 +12,7 @@ class App extends React.Component{
       <section id="app-container">
         <Route path="/" component={NavBar}></Route>
         <Route exact path="/" component={LandingPage}></Route>
-        <Route exact path="/Services" component={Services}></Route>
+        <Route path="/services" component={Services}></Route>
         <Route path="/" component={Footer}></Route>
       </section>
     );
