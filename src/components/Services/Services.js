@@ -2,7 +2,8 @@ import React from "react";
 import "./initial-pck.css";
 import "./custom-pck.css";
 import {Link, Route} from "react-router-dom";
-import RequestsContext from "../../Contexts/RequestsContext./RequestsContext";
+import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
+import TokenService from "../../TokenService/TokenService";
 
 export default class Services extends React.Component{
     constructor(props){
@@ -38,7 +39,7 @@ export default class Services extends React.Component{
                     console.log(requests)
                     for(let i = 0; i < services.length; i++){
                         for(let j = 0; j < requests.length; j++){
-                            if(services[i].name == requests[j].service){
+                            if(services[i].name === requests[j].service){
                                 console.log(true)
                                 services[i].checked = true;
                             };
@@ -99,6 +100,12 @@ export default class Services extends React.Component{
         return services;
     };
 
+    handleCheckout = () => {
+        if(!TokenService.hasToken()){
+            return this.props.history.push("/register");
+        }
+    };
+
     render(){
         return (
             <section className="text-center">
@@ -122,8 +129,10 @@ export default class Services extends React.Component{
                     <ul className="list-group">
                         {this.renderServices()}
                     </ul>
+
                     <p id="custom-price">${this.state.price}</p>
-                    <button id="custom-confirm-btn" onClick={()=>{this.props.history.push("/services/confirm")}}>Continue</button>
+
+                    <button id="custom-confirm-btn" onClick={this.handleCheckout}>Continue</button>
                 </section>
             </section>
         );

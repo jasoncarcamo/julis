@@ -1,0 +1,32 @@
+#register-section{
+    padding: 0;
+    margin: 0;
+    border: 1px solid red;
+}
+
+#register-form *{
+    display: block;
+}
+
+#register-fieldset{
+    border: none;
+}
+
+#register-fieldset div{
+    display: grid !important;
+    margin: 0;
+    padding: 0;
+    grid-template: auto auto  / 1fr 1fr ;
+}
+
+
+
+#register-fieldset label{
+    margin-top: 1em;
+    margin-left: 2.25em;
+}
+
+#register-fieldset input{
+    width: 21em;
+    height: 2em;
+}

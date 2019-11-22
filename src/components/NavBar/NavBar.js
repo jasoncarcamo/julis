@@ -1,8 +1,11 @@
 import React from "react";
 import "./Navbar.css";
 import {NavLink, Link} from "react-router-dom";
+import TokenService from "../../TokenService/TokenService";
+import AppContext from "../../Contexts/AppContext/AppContext";
 
 export default class NavBar extends React.Component{
+
     handleMobileNav = (e) => {
         const burger = document.getElementById("nav-burger");
         const closeLinks = document.getElementById("close-links");
@@ -16,6 +19,58 @@ export default class NavBar extends React.Component{
         closeLinks.classList.toggle("show-close-links");
         navLinks.classList.toggle("display-nav");
     }
+
+    handleSignOut = () => {
+        TokenService.deleteToken();
+        this.handleMobileNav();
+    }
+
+    renderLogin = () => {
+        if(TokenService.hasToken()){
+            return (
+                <>
+                    <li>
+                        <NavLink 
+                        to="/user" 
+                        activeStyle={{ fontWeight: "bold"}}
+                        className="Link"
+                        onClick={this.handleMobileNav}
+                        >Profile</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink 
+                            to="/" 
+                            className="Link"
+                            onClick={this.handleSignOut}
+                        >Sign out</NavLink>
+                    </li>
+                    
+                </>
+            );
+        } else{
+            return (
+                <>
+                    <li>
+                        <NavLink 
+                        to="/register" 
+                        activeStyle={{ fontWeight: "bold"}}
+                        className="Link"
+                        onClick={this.handleMobileNav}>Sign up</NavLink>
+                    </li>
+                    
+                    <li>
+                        <NavLink 
+                        to="/login" 
+                        activeStyle={{ fontWeight: "bold"}}
+                        className="Link"
+                        onClick={this.handleMobileNav}>Log In</NavLink>
+                    </li>
+                </>
+            );
+        };
+    };
+
     render(){
         return(
             <header>
@@ -51,11 +106,13 @@ export default class NavBar extends React.Component{
 
                         <li>
                             <NavLink 
-                            to="About" 
+                            to="/About" 
                             activeStyle={{ fontWeight: "bold"}}
                             className="Link"
                             onClick={this.handleMobileNav}>About</NavLink>
                         </li>
+
+                        {this.renderLogin()}
                     </ul>
                 </nav>
             </header>
