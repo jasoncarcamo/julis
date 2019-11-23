@@ -1,5 +1,6 @@
 import React from "react";
 import TokenService from "../../TokenService/TokenService";
+import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
 
 export default class extends React.Component{
     constructor(props){
@@ -10,6 +11,8 @@ export default class extends React.Component{
             error: ""
         };
     };
+
+    static contextType = RequestsContext;
 
     componentDidMount(){
     }
@@ -38,7 +41,9 @@ export default class extends React.Component{
                 return res.json();
             })
             .then( resData => {
+                console.log(this.context)
                 TokenService.saveToken(resData.token);
+                this.context.refreshPage();
                 this.props.history.push("/user")
             })
             .catch( err => this.setState({ error: err.error}));

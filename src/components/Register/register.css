@@ -1,6 +1,7 @@
 #register-section{
     padding: 0;
     margin: 0;
+    width: 100%;
     border: 1px solid red;
 }
 
@@ -8,8 +9,10 @@
     display: block;
 }
 
+
 #register-fieldset{
-    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 #register-fieldset div{
@@ -22,11 +25,18 @@
 
 
 #register-fieldset label{
-    margin-top: 1em;
-    margin-left: 2.25em;
+    margin: 2em auto 0 auto;
+    width: 60%;
 }
 
 #register-fieldset input{
-    width: 21em;
     height: 2em;
+    margin-top: .5em;
+    width: 100%;
+}
+
+@media screen and (max-width: 770px){
+    #register-fieldset div{
+        grid-template: auto / 1fr;
+    }
 }

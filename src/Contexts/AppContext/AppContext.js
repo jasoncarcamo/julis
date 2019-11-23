@@ -1,6 +1,8 @@
 import React from "react";
+import TokenService from "../../TokenService/TokenService";
 
 const AppContext = React.createContext({
+    user_id: "",
     refreshApp: ()=>{}
 });
 
@@ -11,21 +13,39 @@ export class AppProvider extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            
+            user_id: "",
+            error: ""
         };
     };
 
     componentDidMount(){
         
+        fetch("http://localhost:8000/api/users", {
+            headers: {
+                'authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
+            .then( res => {
+                if(!res.ok){
+                    return res.json().then( e => Promise.reject(e));
+                }
+
+                return res.json();
+            })
+            .then( resData => {
+                this.setState({ user_id: resData.user.id})
+                console.log(resData.user.id);
+            })
+            .catch( err => this.setState({ error: err.error}))
     };
 
-     refreshApp = (param) => {
-         console.log(param)
-         this.props.history.push(param);
+     refreshApp = () => {
+         this.componentDidMount();
      }
     render(){
-
+        console.log(this.state.error, this.state.user_id)
         const value = {
+            user_id: this.state.user_id,
             refreshApp: this.refreshApp
         };
 

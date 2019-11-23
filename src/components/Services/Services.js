@@ -46,7 +46,7 @@ export default class Services extends React.Component{
                         };
                    };
         
-                    this.setState({ requests: this.context.requests});
+                    this.setState({ requests: this.context.requests, price: this.context.price});
         
                 };   
             });
@@ -56,7 +56,7 @@ export default class Services extends React.Component{
     updateServices = (e) => {
 
         let service = this.state.requests;
-        let price = this.state.price;
+        let price = Number(this.state.price);
 
         if(e.target.checked){
             let newService = {
@@ -77,6 +77,7 @@ export default class Services extends React.Component{
             service.splice(serviceIndex, 1);
             price -= removeService.price;
         };
+        console.log(price)
         this.context.updateServices(service, price);
         this.setState({ requests: service, price});
     };    

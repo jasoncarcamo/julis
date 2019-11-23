@@ -49,36 +49,36 @@ export default class Register extends React.Component{
 
         inputList = inputList.map( (name, index) => {
             return (
-                <div key={index}>
-                    <label 
-                        key={index} 
-                        htmlFor={`register_${targetName[index]}`}>
-                        {name}
-                        {name === "Password" || name === "Confirm password"
-                            ? 
+                
+                <label 
+                    key={index} 
+                    htmlFor={`register_${targetName[index]}`}>
+                    {name}
+                    {name === "Password" || name === "Confirm password"
+                        ? 
+                    <input 
+                        type="password" 
+                        id={`register_${targetName[index]}`}
+                        name={targetName[index]}
+                        onChange={this.handleUserInputs} required/> 
+                        : 
+                    name === "Apartment number"
+                        ?
                         <input 
-                            type="password" 
-                            id={`register_${targetName[index]}`}
+                            type="text" 
+                            id={`register_${targetName[index]}`} 
                             name={targetName[index]}
-                            onChange={this.handleUserInputs} required/> 
-                            : 
-                        name === "Apartment number"
-                            ?
+                            onChange={this.handleUserInputs}/>
+
+                            :
                             <input 
                                 type="text" 
                                 id={`register_${targetName[index]}`} 
                                 name={targetName[index]}
-                                onChange={this.handleUserInputs}/>
-
-                                :
-                                <input 
-                                    type="text" 
-                                    id={`register_${targetName[index]}`} 
-                                    name={targetName[index]}
-                                    onChange={this.handleUserInputs} required/>
-                            }
-                    </label>
-                </div>
+                                onChange={this.handleUserInputs} required/>
+                        }
+                </label>
+                
             );
         });
 
@@ -129,7 +129,7 @@ export default class Register extends React.Component{
                 TokenService.saveToken(resData.token);
 
                 this.props.history.push("/services/checkout");
-                
+
             })
             .catch( err => this.setState({ error: err.error}))
     }

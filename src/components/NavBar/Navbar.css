@@ -29,7 +29,7 @@ nav ul{
     display: flex;
     margin: 0;
     padding: 0;
-    width: 35%;
+    width: 50%;
     justify-content: space-evenly;
 }
 

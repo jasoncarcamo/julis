@@ -2,9 +2,11 @@ import React from "react";
 import "./Navbar.css";
 import {NavLink, Link} from "react-router-dom";
 import TokenService from "../../TokenService/TokenService";
-import AppContext from "../../Contexts/AppContext/AppContext";
+import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
 
 export default class NavBar extends React.Component{
+
+    static contextType = RequestsContext;
 
     handleMobileNav = (e) => {
         const burger = document.getElementById("nav-burger");
@@ -23,6 +25,7 @@ export default class NavBar extends React.Component{
     handleSignOut = () => {
         TokenService.deleteToken();
         this.handleMobileNav();
+        this.context.refreshPage();
     }
 
     renderLogin = () => {
