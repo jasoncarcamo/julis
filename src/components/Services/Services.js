@@ -56,6 +56,7 @@ export default class Services extends React.Component{
     updateServices = (e) => {
 
         let service = this.state.requests;
+        console.log(service);
         let price = Number(this.state.price);
 
         if(e.target.checked){
@@ -65,6 +66,7 @@ export default class Services extends React.Component{
             };
 
             service.push(newService);
+            console.log(service);
             price += newService.price;
         } else{
             let removeService = {
@@ -72,12 +74,13 @@ export default class Services extends React.Component{
                 price: Number(e.target.value)
             };
 
-            let serviceIndex = service.indexOf(removeService);
-
+            let serviceIndex = service.map( (e, index) => e.service).indexOf(removeService.service);
+            console.log(serviceIndex)
             service.splice(serviceIndex, 1);
+            console.log(service);
             price -= removeService.price;
         };
-        console.log(price)
+        console.log(price, service)
         this.context.updateServices(service, price);
         this.setState({ requests: service, price});
     };    

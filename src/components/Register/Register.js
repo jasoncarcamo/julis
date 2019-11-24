@@ -1,6 +1,7 @@
 import React from "react";
 import "./register.css";
 import TokenService from "../../TokenService/TokenService";
+import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
 
 export default class Register extends React.Component{
     constructor(props){
@@ -22,7 +23,10 @@ export default class Register extends React.Component{
         };
     };
 
+    static contextType = RequestsContext;
+
     renderInputs = () => {
+
         let inputNames = this.state;
         let inputList = [];
         let index = -1;
@@ -32,9 +36,8 @@ export default class Register extends React.Component{
 
             index++;
             targetName[index] = key;
-            //Before creating the input name list
-            //
 
+            //Before creating the input name list
             let name = key.split("_");
             
             name = name.join(" ");
@@ -90,7 +93,7 @@ export default class Register extends React.Component{
 
     handleUserInputs = (e) => {
         e.preventDefault();
-        console.log(e.target.name)
+        console.log(e.target.name);
         this.setState({ [e.target.name]: e.target.value});
 
     }
@@ -126,9 +129,10 @@ export default class Register extends React.Component{
             })
             .then( resData => {
 
-                TokenService.saveToken(resData.token);
-
-                this.props.history.push("/services/checkout");
+                TokenService.saveToken(resData.token)
+                this.context.refreshPage();
+                this.context.newService(resData.id);
+                this.props.history.push("/user");
 
             })
             .catch( err => this.setState({ error: err.error}))
@@ -136,7 +140,7 @@ export default class Register extends React.Component{
 
     render(){
 
-        console.log(this.state);
+        console.log(this.context.requests.length, this.context.price);
 
         return (
             <section id="register-section">

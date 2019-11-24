@@ -19,8 +19,9 @@ export class AppProvider extends React.Component{
     };
 
     componentDidMount(){
-        
-        fetch("http://localhost:8000/api/users", {
+
+        if(TokenService.hasToken()){
+            fetch("http://localhost:8000/api/users", {
             headers: {
                 'authorization': `bearer ${TokenService.getToken()}`
             }
@@ -37,11 +38,13 @@ export class AppProvider extends React.Component{
                 console.log(resData.user.id);
             })
             .catch( err => this.setState({ error: err.error}))
+        }
     };
 
      refreshApp = () => {
          this.componentDidMount();
-     }
+     };
+
     render(){
         console.log(this.state.error, this.state.user_id)
         const value = {
