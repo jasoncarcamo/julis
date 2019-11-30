@@ -3,6 +3,8 @@ import "./Navbar.css";
 import {NavLink, Link} from "react-router-dom";
 import TokenService from "../../TokenService/TokenService";
 import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHome} from "@fortawesome/free-solid-svg-icons";
 
 export default class NavBar extends React.Component{
 
@@ -74,11 +76,39 @@ export default class NavBar extends React.Component{
         };
     };
 
+    renderAmount = () => {
+
+        if(this.context.requests){
+            
+            if(this.context.requests.length > 0){
+                return this.context.requests.length;
+            } else{
+                return "";
+            };
+
+        }
+        else{
+            return "";
+        };
+
+    };
+
     render(){
+        console.log(this.context)
         return(
             <header>
                 <nav>
                     <h3><Link to="/" className="Link">Julis Cleaning Service</Link></h3>
+
+                    <Link 
+                    id="cart"
+                    className="Link" 
+                    to="/services/confirm"
+                    >
+                        <div id="mobile-requests-amount">{this.renderAmount()}</div>
+                        
+                        <FontAwesomeIcon className="home-icon" icon={faHome}></FontAwesomeIcon>
+                    </Link>
 
                     <div id="nav-burger" onClick={this.handleMobileNav}>
                         <div></div>
@@ -99,7 +129,10 @@ export default class NavBar extends React.Component{
                             onClick={this.handleMobileNav}>Home</NavLink>
                         </li>
 
+            
                         <li>
+                            
+                            <div id="nav-requests-amount">{this.renderAmount()}</div>
                             <NavLink 
                             to="/services" 
                             activeStyle={{ fontWeight: "bold"}}

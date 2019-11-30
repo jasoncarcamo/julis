@@ -6,8 +6,17 @@
     border: 1px solid black;
 }
 
+.initial-pck fieldset{
+    border: none;
+}
+
+.initial-pck h2{
+    margin-top: 2em;
+}
+
 .initial-pck h5{
-    width: 6em;
+    width: 10em;
+    margin-top: 4em;
     margin-left: 15em;
     margin-bottom: -.5em;
 }
@@ -22,14 +31,27 @@
     font-size: 1.5em;
 }
 
-.info-btn{
+.initial-cleaning-input{
     display: block;
     padding-top: 1em;
-    border: 1px solid black;
     width: 7em;
     height: 3em;
-    margin: 0 auto;
+    margin: 1.5em auto auto auto;
 }
+
+
+#services-section > h4 {
+    text-align: center;
+    padding: .7em;
+    width: 5.5em;
+    margin: 2em auto 0 auto;
+    border : .05em solid black;
+}
+
+.show-custom-services{
+    display: block !important;
+}
+
 
 @media screen and (max-width: 770px){
     .initial-pck{

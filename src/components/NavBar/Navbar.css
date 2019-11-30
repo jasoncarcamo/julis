@@ -51,6 +51,30 @@ nav li{
     text-decoration: none;
 }
 
+#nav-requests-amount{
+    position: absolute;
+    top: 0;
+    right: 31%;
+    color: pink;
+    padding: 0;
+    margin-bottom: -1.3em;
+    font-size: 1.2em !important;
+}
+
+#mobile-requests-amount{
+    position: relative;
+    top: -.9em;
+    left: .2em;
+    color: pink;
+    padding: 0;
+    margin-bottom: -1.3em;
+    font-size: 1.2em !important;
+}
+
+#cart{
+    display: none;
+}
+
 @media screen and (max-width: 770px){
     #nav-burger{
         display: block;
@@ -93,5 +117,41 @@ nav li{
         background-color: white;
         flex-direction: column;
         min-height: 100vh;
+    }
+
+    #nav-requests-amount{
+        display: none;
+        bottom: 1em;
+        left: 1.5em;
+    }
+
+    #cart{
+        display: block;
+        color: pink;
+        font-size: 1em;
+        position: absolute;
+        z-index: 2;
+        padding: 0;
+        top: .9em;
+        right: 3.7em;
+        padding: 0;
+        margin: 0;
+    }
+
+    .home-icon{
+        display: block;
+        color: pink;
+        font-size: 1em;
+        position: absolute;
+        z-index: 2;
+        padding: 0;
+        top: .2em;
+        right: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    #cart *{
+        font-size: 1.5em;
     }
 }

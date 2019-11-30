@@ -1,0 +1,32 @@
+#confirm-section{
+    text-align: center;
+    padding: 0;
+    border: 1px solid black;
+}
+
+#confirm-ul{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border: 1px solid black;
+    max-width: 22em;
+    min-height: 30vh;
+    margin: 0 auto;
+    padding-top: 1em;
+}
+
+#confirm-ul li{
+    margin: .8em auto;
+}
+
+#confirm-btn-container{
+    display: flex;
+    width: 80%;
+    margin: 2em auto 0 auto;
+    justify-content: space-evenly;
+}
+
+#confirm-btn-container button{
+    width: 7em;
+    height: 4em;
+}

@@ -1,7 +1,13 @@
 .custom-pck{
-    height: 25em;
+    display: none;
+    width: 60%;
     margin: 2em auto;
     border: 1px solid black;
+}
+
+fieldset{
+    border: none;
+    text-align: center;
 }
 
 .custom-pck h4{
@@ -11,7 +17,7 @@
 
 .custom-pck ul{
     display: grid;
-    margin: 0 auto;
+    margin: 3.5em auto;
     grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
     grid-gap: 1em;
     padding: 0;
@@ -27,7 +33,7 @@
     width: 7em;
     text-align: center;
     font-size: 1.3em;
-    margin: 2em auto;
+    margin: 0 auto;
     padding: 0;
 }
 
@@ -37,6 +43,11 @@
     height: 3em;
     margin: 1em auto 2em auto;
     font-size: 1em;
+}
+
+.confirm-form label{
+    display: block;
+    margin: 1em auto 0 auto;
 }
 
 @media screen and (min-width: 540px) and (max-width: 770px){

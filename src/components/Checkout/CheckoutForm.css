@@ -1,0 +1,23 @@
+
+#checkout-form{
+    width: 17em;
+    padding: 0;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+#checkout-fieldset{
+    border: none;
+}
+
+#checkout-fieldset div{
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr;
+}
+
+#checkout-fieldset label{
+    display: block;
+    margin: 0 auto;
+    height: 3em;
+    border: 1px solid black;
+}
