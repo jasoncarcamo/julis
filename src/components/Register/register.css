@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     width: 100%;
-    border: 1px solid red;
+    text-align: center;
 }
 
 #register-form *{
@@ -15,7 +15,7 @@
     padding: 0;
 }
 
-#register-fieldset div{
+#register-fieldset > div{
     display: grid !important;
     margin: 0;
     padding: 0;
@@ -25,14 +25,34 @@
 
 
 #register-fieldset label{
-    margin: 2em auto 0 auto;
-    width: 60%;
+    margin: 2.5em auto 0 auto;
+    width: 70%;
+    padding: 0;
+    text-align: left;
+}
+
+input[type="tel"]{
+    height: auto !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    border-bottom: .06em solid black;
 }
 
 #register-fieldset input{
-    height: 2em;
+    height: 2.5em;
     margin-top: .5em;
     width: 100%;
+    background-color: rgb(250, 226, 230);
+    border: .06em solid #8c8c8c;
+    border-radius: .333em;
+}
+
+#register-form button {
+    display: block;
+    width: 7.5em;
+    height: 4em;
+    margin: 3em auto;
 }
 
 @media screen and (max-width: 770px){

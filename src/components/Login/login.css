@@ -1,0 +1,61 @@
+#login-section{
+    text-align: center;
+}
+
+#login-form{
+    display: grid;
+    grid-template: auto auto auto auto / 100%;
+    width: 25em;
+    border: 1px solid black;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#login-fieldset{
+    display: contents;
+}
+
+#login-fieldset label{
+    margin: 1.5em auto 0 auto;
+    padding: 1em;
+}
+
+#login-password{
+    display: block;
+    width: 60%;
+    height: 2.5em;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: .33em;
+    background-color: rgb(250, 226, 230);
+    border: .06em solid #8c8c8c;
+}
+
+input[type=password]:focus{
+    border: .06em solid #080808 !important;
+}
+
+#login-password:focus{
+    border: .06em solid #080808 !important;
+}
+
+.login-mobile-number{
+    display: block !important;
+    
+    border-radius: .33em;
+    background-color: rgb(250, 226, 230);
+    border: .06em solid #8c8c8c;
+    margin: 0 auto !important;
+}
+
+#login-fieldset button{
+    width: 6em; 
+    height: 3em;
+    margin: 2em auto;
+}
+
+@media screen and (max-width: 770px){
+    #login-form{
+        width: 70%;
+    }
+}

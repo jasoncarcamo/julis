@@ -1,0 +1,20 @@
+#profile-section{
+    display: grid;
+    grid-template: 100% / .6fr 2fr;
+    padding: 0;
+}
+
+#profile-section > section{
+    border: .06em solid black;
+}
+
+#profile-section h2{
+    text-align: center;
+}
+
+@media screen and (max-width:770px){
+    #profile-section{
+        grid-template: .25fr auto / 100vw;
+        grid-gap: 0;
+    }
+}

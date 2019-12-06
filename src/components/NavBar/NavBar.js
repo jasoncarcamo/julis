@@ -142,10 +142,10 @@ export default class NavBar extends React.Component{
 
                         <li>
                             <NavLink 
-                            to="/About" 
+                            to="/about" 
                             activeStyle={{ fontWeight: "bold"}}
                             className="Link"
-                            onClick={this.handleMobileNav}>About</NavLink>
+                            onClick={this.handleMobileNav}>About us</NavLink>
                         </li>
 
                         {this.renderLogin()}

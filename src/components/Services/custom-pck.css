@@ -51,6 +51,8 @@ fieldset{
 }
 
 @media screen and (min-width: 540px) and (max-width: 770px){
+
+
     #custom-price{
         width: 7em;
         text-align: center;
@@ -71,8 +73,21 @@ fieldset{
 
 @media screen and (max-width: 770px){
 
+    .custom-pck{
+        width: 80%;
+    }
+
     .custom-pck ul{
-        grid-gap: 0;
+        display: flex;
+        flex-direction: column;
+        margin: 1em auto;
+    }
+
+    .custom-pck ul li{
+        width: 50%;
+        margin: .3em auto;
+        padding: 0;
+        border: 1px solid black;
     }
 
     .custom-pck ul input, .custom-pck ul select{

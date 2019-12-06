@@ -1,0 +1,51 @@
+#user-contact-us{
+    height: 90vh;
+    overflow: auto;
+    text-align: center;
+}
+
+#user-contact-info{
+    width: 90%;
+    margin: 1.5em auto;
+}
+
+#user-contact-section {
+    width: 90%;
+    margin: 1em auto;
+}
+
+#user-contact-fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+#user-contact-fieldset label{
+    margin: 1em 0 .5em 0;
+}
+
+#user-contact-fieldset textarea{
+    display: block;
+    width: 70%;
+    height: 15em;
+    margin: 0 auto;
+}
+
+#user-contact-fieldset button{
+    display: block;
+    width: 5.5em;
+    height: 3em;
+    font-size: 1em;
+    margin: 1em auto;
+}
+
+@media screen and (max-width: 770px){
+    #user-contact-us{
+        overflow: visible;
+    }
+
+    #user-contact-fieldset textarea{
+        display: block;
+        width: 85%;
+        height: 12em;
+    }
+}

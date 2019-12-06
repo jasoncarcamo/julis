@@ -262,7 +262,7 @@ export default class Services extends React.Component{
                                 name="Initial cleaning" 
                                 value="90"
                                 onChange={this.updateServices}/>
-                                $90.00
+                                $90.00 / hour
                             </label>
 
                             
@@ -281,7 +281,7 @@ export default class Services extends React.Component{
 
                 </section>
 
-                <p id="custom-price">${this.state.price}</p>
+                <p id="custom-price">${this.state.price ? this.state.price + " / hour" : this.state.price}</p>
 
                 <form className="confirm-form">
                     <fieldset>

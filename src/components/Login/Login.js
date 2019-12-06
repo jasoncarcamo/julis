@@ -1,6 +1,9 @@
 import React from "react";
 import TokenService from "../../TokenService/TokenService";
 import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
+import MuiPhoneNumber from "material-ui-phone-number";
+import {Link} from "react-router-dom";
+import "./login.css";
 
 export default class extends React.Component{
     constructor(props){
@@ -21,6 +24,10 @@ export default class extends React.Component{
         e.preventDefault();
 
         this.setState({ [e.target.name]: e.target.value})
+    }
+
+    handleMobileNumber = (value) => {
+        this.setState({mobile_number: value});
     }
 
     handleSubmit = (e) => {
@@ -57,27 +64,34 @@ export default class extends React.Component{
                     <fieldset id="login-fieldset">
                         <label htmlFor="login-mobile-number">
                             Mobile number
-                            <input 
-                                type="text" 
-                                id="login-mobile-number" 
-                                name="mobile_number"
-                                onChange={this.handleInput}
-                                required></input>
                         </label>
+                        <MuiPhoneNumber 
+                            id="login-mobile-number"
+                            inputClass="login-mobile-number"
+                            defaultCountry={"us"}
+                            countryCodeEditable={false}
+                            onChange={this.handleMobileNumber}
+                            disableDropdown={true}
+                            />
 
                         <label htmlFor="login-password">
                             Password
-                            <input 
+                        </label>
+                        <input 
                                 id="login-password" 
                                 type="password"
                                 name="password"
                                 onChange={this.handleInput}
                                 required></input>
-                        </label>
+
                         {this.state.error ? <p>{this.state.error}</p> : ""}
                         <button type="submit">Log In</button>
                     </fieldset>
                 </form>
+                <p>
+                    Don't have an account? 
+                    <Link to="/register"> Sign up here</Link>
+                </p>
             </section>
         );
     };

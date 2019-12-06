@@ -9,8 +9,6 @@
     flex-direction: column;
     padding: 0;
     border: 1px solid black;
-    max-width: 22em;
-    min-height: 30vh;
     margin: 0 auto;
     padding-top: 1em;
 }

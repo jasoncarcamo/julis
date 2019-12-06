@@ -1,0 +1,27 @@
+#aside-section{
+    height: 90vh;
+    padding: 0;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#aside-section ul{
+    display: flex;
+    height: 50%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: .25em 0 0 0;
+    margin: 0;
+}
+
+@media screen and (max-width:770px){
+    #aside-section{
+        height: 4em;
+    }
+
+    #aside-section ul{
+        margin: .8em  auto 0 auto!important;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}

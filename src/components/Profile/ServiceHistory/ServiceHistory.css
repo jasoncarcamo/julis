@@ -1,0 +1,13 @@
+#service-history{
+    height: 90vh;
+    overflow: auto;
+    padding: 0;
+}
+
+@media screen and (max-width: 770px){
+    #service-history{
+        height: auto;
+        overflow: visible;
+        border: none;
+    }
+}

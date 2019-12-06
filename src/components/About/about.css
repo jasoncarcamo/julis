@@ -1,0 +1,70 @@
+#about-section{
+    text-align: center;
+}
+
+#about-section > p{
+    width: 90%;
+    margin: 1.5em auto;
+}
+
+#contact-us-info{
+    width: 45%;
+    margin: 4em auto;
+    text-align: center;
+}
+
+#contact-us-section{
+    width: 45%;
+    margin: 0 auto;
+    border: 1px solid #000000;
+    text-align: center;
+}
+
+#contact-us-fieldset{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+#contact-us-fieldset label{
+    margin-top: 1em;
+}
+
+#contact-us-fieldset input{
+    display: block;
+    width: 18em;
+    height: 2em;
+    margin: 0 auto;
+}
+
+#contact-us-fieldset textarea{
+    display: block;
+    width: 85%;
+    height: 15em;
+    margin: 0 auto;
+}
+
+#contact-us-fieldset button{
+    display: block;
+    width: 5.5em;
+    height: 3em;
+    font-size: 1em;
+    margin: 1em auto;
+}
+
+
+@media screen and (max-width: 770px){
+
+    #contact-us-section{
+        width: 100%;
+    }
+
+    #contact-us-fieldset input{
+        width: 75%;
+    }
+    
+    #contact-us-fieldset textarea{
+        width: 80%;
+    }
+
+}

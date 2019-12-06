@@ -94,7 +94,7 @@ export class RequestsProvider extends React.Component{
                     
                     requests.forEach( request => {
                         console.log(request);
-                        request.service = this.formatData(request.service)
+                        request.service = this.formatData(request.service);
                     });
 
                     requests = requests.filter( request => {

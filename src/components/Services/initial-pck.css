@@ -34,7 +34,7 @@
 .initial-cleaning-input{
     display: block;
     padding-top: 1em;
-    width: 7em;
+    width: 10em;
     height: 3em;
     margin: 1.5em auto auto auto;
 }
@@ -43,8 +43,8 @@
 #services-section > h4 {
     text-align: center;
     padding: .7em;
-    width: 5.5em;
-    margin: 2em auto 0 auto;
+    width: 7em;
+    margin: 2em auto;
     border : .05em solid black;
 }
 

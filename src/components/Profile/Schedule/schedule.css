@@ -1,0 +1,14 @@
+#user-schedule{
+    height: 90vh;
+    overflow: auto;
+}
+
+
+
+@media screen and (max-width: 770px){
+    #user-schedule{
+        height: auto;
+        overflow: visible;
+        border: none;
+    }
+}

@@ -2,6 +2,8 @@ import React from "react";
 import "./register.css";
 import TokenService from "../../TokenService/TokenService";
 import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
+import {Link} from "react-router-dom";
+import MuiPhoneNumber from "material-ui-phone-number";
 
 export default class Register extends React.Component{
     constructor(props){
@@ -56,29 +58,56 @@ export default class Register extends React.Component{
                 <label 
                     key={index} 
                     htmlFor={`register_${targetName[index]}`}>
-                    {name}
+                    * {name}
                     {name === "Password" || name === "Confirm password"
                         ? 
-                    <input 
-                        type="password" 
-                        id={`register_${targetName[index]}`}
-                        name={targetName[index]}
-                        onChange={this.handleUserInputs} required/> 
+                    (
+                        <>
+                            <input 
+                                type="password" 
+                                id={`register_${targetName[index]}`}
+                                name={targetName[index]}
+                                onChange={this.handleUserInputs} required/>
+                            {name === "Password" 
+                                ? 
+                                this.validatePassword(this.state.password) 
+                                :
+                                name === "Confirm password"
+                                ?
+                                this.handlePasswordMatch()
+                                :
+                                ""
+                            } 
+                        </>
+                    )
                         : 
+                    name === "Mobile number"
+                        ?
+                        <MuiPhoneNumber 
+                            defaultCountry={"us"}
+                            countryCodeEditable={false}
+                            onChange={this.handleMobileNumber}
+                            disableDropdown={true}
+                            inputClass="register-mobile-number"
+                            />
+                        :
                     name === "Apartment number"
                         ?
                         <input 
                             type="text" 
                             id={`register_${targetName[index]}`} 
                             name={targetName[index]}
-                            onChange={this.handleUserInputs}/>
+                            onChange={this.handleUserInputs}
+                            placeholder="If applicable"/>
 
                             :
                             <input 
                                 type="text" 
                                 id={`register_${targetName[index]}`} 
                                 name={targetName[index]}
-                                onChange={this.handleUserInputs} required/>
+                                onChange={this.handleUserInputs}
+                                placeholder={name}
+                                required/>
                         }
                 </label>
                 
@@ -89,6 +118,13 @@ export default class Register extends React.Component{
 
         return inputList;
 
+    }
+
+    handleMobileNumber = (value) => {
+        console.log(value)
+        this.setState({
+            mobile_number: value
+        })
     }
 
     handleUserInputs = (e) => {
@@ -138,12 +174,50 @@ export default class Register extends React.Component{
             .catch( err => this.setState({ error: err.error}))
     }
 
+    validatePassword = (password) => {
+        const REGEX_UPPER_LOWER_NUMBER_SPECIAL = (/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/);
+
+        if (password.length < 8) {
+          return <span className="reg_error" style={{color: 'red'}}>Password must be longer than 8 characters</span>
+        }
+        if (password.length > 72) {
+          return <span className="reg_error" style={{color: 'orange'}}>Password must be less than 72 characters</span>
+        }
+        if (password.startsWith(' ') || password.endsWith(' ')) {
+          return <span className="reg_error" style={{color: 'orange'}}>Password must not start or end with empty spaces</span>
+        }
+        if (!REGEX_UPPER_LOWER_NUMBER_SPECIAL.test(password)) {
+          return <span className="reg_error" style={{color: 'orange'}}>Password must contain one upper case, lower case, number and special character</span>
+        }
+        return <span className="reg_error" style={{color: 'green'}}>Looking good!</span>
+      }
+
+      handlePasswordMatch = ()=>{
+        
+        if(this.state.password.length > 6 && this.state.confirm_password.length > 5 && this.state.password === this.state.confirm_password){
+            return (<span className="reg_error" style={{color: 'green'}}>Passwords match!</span>);
+        };
+
+        if(this.state.password.length > 6 && this.state.confirm_password.length > 5 && this.state.password !== this.state.confirm_password){
+            return (<span className="reg_error" style={{color: 'red'}}>Passwords do not match.</span>);
+        }
+
+        if(this.state.password.length < 6 && this.state.confirm_password.length < 5){
+            return "";
+        };
+    
+    }
+
     render(){
 
-        console.log(this.context.requests.length, this.context.price);
+        console.log(this.state.mobile_number);
 
         return (
             <section id="register-section">
+                <p>
+                    Already have an account? 
+                    <Link to="/login"> Log In</Link>
+                </p>
                 <form id="register-form" onSubmit={this.handleSubmit}>
                     <fieldset id="register-fieldset">
                         <div>
