@@ -3,6 +3,32 @@
     overflow: auto;
 }
 
+#future-requests-list{
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    margin: .5em auto;
+    padding: 0;
+}
+
+#future-requests-list > li{
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+#future-requests-list li div div{
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#future-requests-list > li button{
+    display: block;
+    width: 5.5em;
+    font-size: 1em;
+    margin: 1em auto;
+}
+
 
 
 @media screen and (max-width: 770px){

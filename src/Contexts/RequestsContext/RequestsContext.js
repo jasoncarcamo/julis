@@ -76,7 +76,20 @@ export class RequestsProvider extends React.Component{
             .then( resData => {
                 user_id = resData.user.id;
                 console.log(user_id)
-                Promise.all([fetch("http://localhost:8000/api/services"), fetch("http://localhost:8000/api/requests")])
+                Promise.all(
+                    [
+                        fetch("http://localhost:8000/api/services", {
+                            headers: {
+                                'content-type': "application/json",
+                                'authorization': `bearer ${TokenService.getToken()}`
+                            }
+                        }), 
+                        fetch("http://localhost:8000/api/requests", {
+                            headers: {
+                                'content-type': "application/json",
+                                'authorization': `bearer ${TokenService.getToken()}`
+                            }
+                        })])
                 .then( ([ serviceRes, requestsRes]) => {
 
                     if(!serviceRes.ok){
@@ -96,6 +109,7 @@ export class RequestsProvider extends React.Component{
                         console.log(request);
                         request.service = this.formatData(request.service);
                     });
+                    console.log(requests);
 
                     requests = requests.filter( request => {
                         console.log(user_id);
@@ -122,7 +136,6 @@ export class RequestsProvider extends React.Component{
                         });
                     }
 
-                    console.log(user_id, requests[0])
                     this.setState({ 
                         services: serviceData.services, 
                         requests: requests[0].service, 
@@ -131,7 +144,7 @@ export class RequestsProvider extends React.Component{
                         user_id: this.context.user_id,
                         requestsId: requests[0].id,
                         price: requests[0].price
-                    })
+                    });
                         
                 })
                 .catch( err => this.setState({ error: err.error}));
@@ -163,7 +176,7 @@ export class RequestsProvider extends React.Component{
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
-                    'authorization': `bearer `
+                    'authorization': `bearer ${TokenService.getToken()}`
                 },
                 body: JSON.stringify({
                     date,
@@ -190,7 +203,7 @@ export class RequestsProvider extends React.Component{
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
-                    'authorization': `bearer `
+                    'authorization': `bearer ${TokenService.getToken()}`
                 },
                 body: JSON.stringify({
                     time,
@@ -231,7 +244,7 @@ export class RequestsProvider extends React.Component{
                 })
                 .then( resData => {
                     console.log(resData, "Processed");
-                    return this.componentDidMount();
+                    this.componentDidMount();
                 })
                 .catch( err => this.setState({ error: err.error}));
     }
@@ -244,7 +257,7 @@ export class RequestsProvider extends React.Component{
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
-                    'authorization': `bearer `
+                    'authorization': `bearer ${TokenService.getToken()}`
                 },
                 body: JSON.stringify({ 
                     service: "{}", 
@@ -274,9 +287,11 @@ export class RequestsProvider extends React.Component{
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
-                    'authorization': `bearer `
+                    'authorization': `bearer ${TokenService.getToken()}`
                 },
                 body: JSON.stringify({ 
+                    time: this.state.time,
+                    date: this.state.date,
                     service, 
                     price, 
                     id: this.state.requestsId})
@@ -296,8 +311,11 @@ export class RequestsProvider extends React.Component{
                 method: "POST",
                 headers: {
                     'content-type': "application/json",
+                    'authorization': `bearer ${TokenService.getToken()}`
                 },
                 body: JSON.stringify({ 
+                    date: this.state.date,
+                    time: this.state.time,
                     service, 
                     price,
                     user_id: this.context.user_id})
@@ -322,7 +340,8 @@ export class RequestsProvider extends React.Component{
         fetch("http://localhost:8000/api/requests", {
             method: "POST",
             headers: {
-                'content-type': "application/json"
+                'content-type': "application/json",
+                'authorization': `bearer ${TokenService.getToken()}`
             },
             body: JSON.stringify({ 
                 service: this.state.requests, 
@@ -389,7 +408,7 @@ export class RequestsProvider extends React.Component{
     }
 
     render(){
-
+        console.log(this.state)
         const value = {
             services: this.state.services,
             requests: this.state.requests,

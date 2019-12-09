@@ -1,0 +1,18 @@
+#my-info-section{
+    display: flex;
+    flex-direction: column;
+}
+
+#my-info-section > section{
+    border-bottom: .06em solid black;
+    text-align: center;
+    padding: 0 .5em;
+    margin: 1em 0;
+}
+
+#my-info-section  section > button{
+    display: block;
+    font-size: 1em;
+    width: 5.5em;
+    margin: 1em auto;
+}

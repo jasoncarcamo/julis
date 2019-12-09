@@ -16,7 +16,8 @@ export default class Services extends React.Component{
             price: 0,
             date: new Date(),
             time: "",
-            confirm: false
+            confirm: false,
+            error: ""
         };
     };
 
@@ -27,7 +28,12 @@ export default class Services extends React.Component{
         let initialCleaning = document.getElementById("initial-cleaning-input");
         let services = document.getElementsByClassName("service-checkboxes");
         
-        fetch("http://localhost:8000/api/services")
+        fetch("http://localhost:8000/api/services", {
+            headers: {
+                'content-type': "application/json",
+                'authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
             .then( res => {
                 if(!res.ok){
                     return res.json().then( e=> Promise.reject(e));
@@ -226,9 +232,15 @@ export default class Services extends React.Component{
         services.classList.toggle("show-custom-services");
     }
 
-    handleCheckout = () => {
+    handleCheckout = (e) => {
+        e.preventDefault();
+
         if(!TokenService.hasToken()){
             return this.props.history.push("/register");
+        }
+
+        if(this.state.time === ""){
+            return this.setState({ error: "The time is needed"})
         }
 
         this.props.history.push("/services/confirm")
@@ -283,22 +295,22 @@ export default class Services extends React.Component{
 
                 <p id="custom-price">${this.state.price ? this.state.price + " / hour" : this.state.price}</p>
 
-                <form className="confirm-form">
+                <form className="confirm-form" onSubmit={this.handleCheckout}>
                     <fieldset>
                         
                         <label htmlFor="react-date">
-                            When?
+                            * When?
                         </label>
                         <DatePicker
                                 id="react-date"
                                 className="react-date-picker"
                                 value={this.state.date}
                                 onChange={this.handleDate}
-                                minDate={new Date()} 
+                                 
                                 required/>
 
                         <label htmlFor="react-time">
-                            What time?  
+                            * What time?  
                         </label>
                         <TimePicker
                                 id="react-time"
@@ -307,8 +319,8 @@ export default class Services extends React.Component{
                                 value={this.state.time}
                                 disableClock={true}
                                 format="hh:mm a"/>
-                        
-                        <button id="custom-confirm-btn" onClick={this.handleCheckout}>Continue</button>
+                        {this.state.error ? <p style={{textAlign: "center"}}>{this.state.error}</p> : ""}
+                        <button id="custom-confirm-btn" type="submit">Continue</button>
                     </fieldset>
                 </form>
             </section>

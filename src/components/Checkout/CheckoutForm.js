@@ -41,38 +41,8 @@ class CheckoutForm extends React.Component{
 
     handleSubmit = async (e) => {
         e.preventDefault();
-
-        let stripe = await this.props.stripe.createToken({name: "Name"});
-        console.log(stripe)
-        if(stripe.error){
-            return this.setState({ error: stripe.error.message})
-        }
-
-        try{
-            let response = await fetch("http://localhost:8000/api/charge",{
-                method: "POST",
-                headers: {
-                    'content-type': "application/json",
-                },
-                body: JSON.stringify({token: stripe.token.id})
-            });
-
-            if(!response.ok){
-                return response.json().then( e => Promise.reject(e));
-            };
-
-            let responseData = await response.json();
-
-            if(responseData){
-                console.log("Success", responseData)
-                this.context.completeRequests();
-                this.setState({ complete: true});
-            }
-            console.log(response);
-
-        } catch(err){
-            this.setState({error: err});
-        };
+        this.context.completeRequests();
+        this.setState({ complete: true});
 
     };
 
@@ -82,27 +52,6 @@ class CheckoutForm extends React.Component{
                 return (
                     <form id="checkout-form" >
                         <fieldset id="checkout-fieldset">
-                            
-                            <label>
-                                Card number
-                                <CardNumberElement {...createOptions()}/>
-                            </label>
-        
-                            <label>
-                                Expiration date
-                                <CardExpiryElement {...createOptions()}/>
-                            </label>
-        
-                            <label>
-                                CVC
-                                <CardCVCElement {...createOptions}/>
-                            </label>
-        
-                            <label>
-                                Zip code
-                                <input type="text" className="stripeElement"></input>
-                            </label>
-                            {this.state.error ? this.state.error : ""}
                             <button type="button" onClick={this.handleSubmit}>Go</button>
                             
                         </fieldset>
@@ -135,4 +84,4 @@ class CheckoutForm extends React.Component{
     };
 };
 
-export default injectStripe(CheckoutForm);
+export default CheckoutForm;

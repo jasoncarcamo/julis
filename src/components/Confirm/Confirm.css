@@ -1,6 +1,8 @@
 #confirm-section{
+    width: 35em;
     text-align: center;
     padding: 0;
+    margin: 0 auto;
     border: 1px solid black;
 }
 
@@ -8,12 +10,13 @@
     display: flex;
     flex-direction: column;
     padding: 0;
-    border: 1px solid black;
     margin: 0 auto;
     padding-top: 1em;
 }
 
 #confirm-ul li{
+    list-style: disc !important;
+    width: auto;
     margin: .8em auto;
 }
 
@@ -27,4 +30,15 @@
 #confirm-btn-container button{
     width: 7em;
     height: 4em;
+}
+
+@media screen and (max-width: 770px){
+
+    #confirm-section{
+        width: 100%;
+    }
+
+    #confirm-ul{
+        width: 100%;
+    }
 }

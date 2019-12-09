@@ -2,12 +2,14 @@ import React from "react";
 import UserContext from "../../../Contexts/UserContext/UserContext";
 import TokenService from "../../../TokenService/TokenService";
 import "./schedule.css";
+import {Link} from "react-router-dom";
 
 export default class Schedule extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             futureRequests: [],
+            canceling: false,
             error: ""
         };
     };
@@ -15,8 +17,64 @@ export default class Schedule extends React.Component{
     static contextType = UserContext;
 
     componentDidMount(){
-        fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
+        console.log(this.context);   
+        
+        setTimeout(()=> {
+            console.log("Timeouf")
+            
+            console.log(this.context.requests)
+
+            fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
+                headers: {
+                    'content-type': "application/json",
+                    'authorization': `bearer ${TokenService.getToken()}`
+                }
+            })
+                .then( res => {
+                    if(!res.ok){
+                        return res.json().then( e => Promise.reject(e));
+                    };
+
+                    return res.json();
+                })
+                .then( resData => {
+                    console.log(resData.requests)
+                    let futureRequests = resData.requests;
+
+                    futureRequests = futureRequests.filter( request => {
+                        if(new Date(request.date) > new Date() && request.confirmed){
+                            return request;
+                        };
+                    });
+
+                    futureRequests.forEach( request => {
+                        request.service = this.formatData(request.service);
+                        console.log(request.service)
+                    })
+        
+                    futureRequests.sort( (a, b) => {
+                        let aDate = new Date(a.date);
+                        let bDate = new Date(b.date);
+        
+                        return aDate - bDate;
+                    });
+                    
+                    this.setState({ futureRequests });
+                })
+
+        }, 300);
+        
+    };
+
+    handleCancel = () => {
+        this.setState({ canceling: !this.state.canceling})
+    }
+
+    cancelService = (id) => {
+        fetch(`http://localhost:8000/api/requests/${id}`, {
+            method:"DELETE",
             headers: {
+                'content-type': "application/json",
                 'authorization': `bearer ${TokenService.getToken()}`
             }
         })
@@ -28,40 +86,17 @@ export default class Schedule extends React.Component{
                 return res.json();
             })
             .then( resData => {
-
-                let futureRequests = resData.requests.filter( request => {
-
-                    request.service = this.formatData(request.service);
-
-                    if(new Date(request.date) > new Date()){
-                        return request;
-                    };
-                });
-
-                futureRequests.sort( (a, b) =>{
-                    let aDate = new Date(a.date);
-                    let bDate = new Date(b.date);
-
-                    return aDate - bDate;
-                })
-
-                futureRequests = futureRequests.filter( request => {
-                    if(new Date(request.date) > new Date()){
-                        return request;
-                    };
-                });
-
-                console.log(futureRequests);
-
-                this.setState({futureRequests})
+                console.log(resData)
+                this.componentDidMount();
             })
             .catch( err => this.setState({ error: err.error}))
-    };
+    }
 
     renderServices = (services) => {
+        console.log(services)
         let allServices = services.map( (service, index) => {
             return (
-                <li key={index}>
+                <li key={index} style={{listStyle: "disc"}}>
                 <p>{service.service}</p>
                 </li>
             );
@@ -73,24 +108,39 @@ export default class Schedule extends React.Component{
     renderFutureRequests = () => {
         let futureRequests = this.state.futureRequests;
 
+        if(futureRequests.length == 0){
+            return <p style={{textAlign: "center"}}>You do not have any services coming up. <Link to="/services">Request services here</Link></p>
+        };
+
         futureRequests = futureRequests.map( ( request, index) => {
+            console.log(request.id)
             return (
                 <li key={index}>
-                    <p>Date: {new Date(request.date).toDateString()}</p>
-                    <p>Time: {request.time}</p>
-
+                    <p><strong>Date:</strong> {new Date(request.date).toDateString()}</p>
+                    <p><strong>Time:</strong> {request.time}</p>
+                    <p><strong>Services:</strong></p>
                     <ul>
                         {this.renderServices(request.service)}
                     </ul>
 
-                    <p>Date created: {new Date(request.date_created).toDateString()}</p>
+                    <p><strong>Date created:</strong> {new Date(request.date_created).toDateString()}</p>
 
-                    <p>Price: ${request.price} / hour</p>
+                    <p><strong>Price:</strong> ${request.price} / hour</p>
 
                     <div>
                         <p>* Cancellation must be 24 hours in advanced. Failure to do so will result in a cancellation fee</p>
-                        <button>Cancel</button>
+                        {this.state.error ? <p><strong>{this.state.error}</strong></p> : ""}
+                        {this.state.canceling 
+                            ? 
+                            <div>
+                                <button onClick={ () => this.cancelService(request.id)}>I am sure</button>
+                                <button onClick={this.handleCancel}>Nevermind</button>
+                        </div>
+                            : 
+                            <button onClick={this.handleCancel}>Cancel</button>
+                        }
                     </div>
+
                 </li>
             );
         });
@@ -99,6 +149,9 @@ export default class Schedule extends React.Component{
     };
 
     formatData = (data)=>{
+        if(typeof data === "object"){
+            return data;
+        }
         let formatData = data.split("");
 
         if(formatData[1] === "\"" && formatData[formatData.length - 2] === "\""){
@@ -136,12 +189,12 @@ export default class Schedule extends React.Component{
     };
 
     render(){
-        console.log(this.state.futureRequests);
+        console.log(this.state);
         return (
             <section id="user-schedule">
                 <h2>Schedule</h2>
-                <section>
-                    <ul id="user-future-">
+                <section id="future-requests-section">
+                    <ul id="future-requests-list">
                         {this.renderFutureRequests()}
                     </ul>
                 </section>

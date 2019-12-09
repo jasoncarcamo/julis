@@ -1,0 +1,24 @@
+#user-home{
+    padding: 0;
+}
+
+#user-home ul{
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    margin: .5em auto;
+    padding: 0;
+}
+
+#user-home ul li div div{
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#user-home button{
+    display: block;
+    width: 5.5em;
+    font-size: 1em;
+    margin: 1em auto;
+}

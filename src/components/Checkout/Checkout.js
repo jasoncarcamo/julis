@@ -22,11 +22,7 @@ export default class Checkout extends React.Component{
     render(){
         return(
             <section>
-                <StripeProvider apiKey="pk_test_NoYeWDcdppmbycRR6wjzcOq500raM89sBa">
-                    <Elements>
-                        <CheckoutForm history={this.props.history}/>
-                    </Elements>
-                </StripeProvider>
+                <CheckoutForm history={this.props.history}/>
             </section>
         )
     }

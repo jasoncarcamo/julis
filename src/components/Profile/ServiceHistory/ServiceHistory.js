@@ -2,6 +2,7 @@ import React from "react";
 import TokenService from "../../../TokenService/TokenService";
 import UserContext from "../../../Contexts/UserContext/UserContext";
 import "./ServiceHistory.css";
+import {Link} from "react-router-dom";
 
 export default class ServiceHistory extends React.Component{
     constructor(props){
@@ -15,31 +16,58 @@ export default class ServiceHistory extends React.Component{
     static contextType = UserContext;
 
     componentDidMount(){
-        fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
-            headers: {
-                'authorization': `bearer ${TokenService.getToken()}`
-            }
-        })
-            .then( res => {
-                if(!res.ok){
-                    return res.json().then( e => Promise.reject(e));
-                };
 
-                return res.json();
+        setTimeout(()=> {
+            console.log("Timeouf")
+            
+            console.log(this.context.requests)
+
+            fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
+                headers: {
+                    'content-type': "application/json",
+                    'authorization': `bearer ${TokenService.getToken()}`
+                }
             })
-            .then( resData => {
+                .then( res => {
+                    if(!res.ok){
+                        return res.json().then( e => Promise.reject(e));
+                    };
 
-                let confirmedRequests = resData.requests.filter( request => request.confirmed === true);
+                    return res.json();
+                })
+                .then( resData => {
+                    
+                    let confirmedRequests = resData.requests;
+                    console.log(confirmedRequests);
+                    confirmedRequests = confirmedRequests.filter( request => {
+                        if(new Date(request.date) < new Date()){
+                            return request;
+                        };
+                    });
 
-                this.setState({ confirmedRequests })
+                    confirmedRequests.sort( (a, b) =>{
+                        let aDate = new Date(a.date);
+                        let bDate = new Date(b.date);
 
-            })
-            .catch( err => this.setState({ error: err.error}));
+                        return bDate - aDate;
+                    });
+
+                    confirmedRequests.forEach( request => {
+                        request.service = this.formatData(request.service);
+                    });
+
+                    console.log(confirmedRequests);
+                    this.setState({ confirmedRequests });
+                })
+
+        }, 300);
     }
 
     renderService = (services) => {
+        console.log(services)
         let allServices = services.map( (service, index) => {
-            return <li key={index}>{service.service}</li>
+
+            return <li key={index} style={{listStyle: "disc"}}>{service.service}</li>
         });
 
         return allServices;
@@ -47,10 +75,6 @@ export default class ServiceHistory extends React.Component{
 
     renderHistory = () => {
         let confirmedRequests = this.state.confirmedRequests;
-        
-        confirmedRequests.forEach( request => {
-            request.service = this.formatData(request.service);
-        })
 
         confirmedRequests.sort((a, b) => {
             let aDate = new Date(a.date);
@@ -61,36 +85,47 @@ export default class ServiceHistory extends React.Component{
         });
 
         confirmedRequests = confirmedRequests.filter( request => {
-            if(new Date(request.date) < new Date()){
+            if(new Date(request.date) <= new Date()){
                 return request;
             };
         });
+
+        if(confirmedRequests.length == 0){
+            return <p style={{textAlign: "center"}}>There are no past requests yet. <Link to="/services">Request services here</Link></p>
+        };
 
         confirmedRequests = confirmedRequests.map( ( request, index) => {
 
             return (
                 <li key={index}>
-                    <p>Date: {new Date(request.date).toDateString()}</p>
-                    <p>Time: {request.time}</p>
+                    <p><strong>Date:</strong> {new Date(request.date).toDateString()}</p>
+                    <p><strong>Time:</strong> {request.time}</p>
 
+                    <p><strong>Services:</strong></p>
                     <ul>
                         {this.renderService(request.service)}
                     </ul>
 
-                    <p>Date created: {new Date(request.date_created).toDateString()}</p>
+                    <p><strong>Date created:</strong> {new Date(request.date_created).toDateString()}</p>
 
-                    <p>Price: ${request.price} / hour</p>
+                    <p><strong>Price:</strong> ${request.price} / hour</p>
 
                 </li>
             );
         });
 
-        console.log(confirmedRequests)
-
         return confirmedRequests;
     };
 
     formatData = (data)=>{
+        if(typeof data === "object"){
+            return data;
+        };
+
+        console.log(data);
+        if(!data){
+            return;
+        }
         let formatData = data.split("");
 
         if(formatData[1] === "\"" && formatData[formatData.length - 2] === "\""){
@@ -128,12 +163,12 @@ export default class ServiceHistory extends React.Component{
     };
 
     render(){
-
+        
         return (
             <section id="service-history">
                 <h2>Service history</h2>
-                <section>
-                    <ul>
+                <section id="past-requests-section">
+                    <ul id="past-requests-list">
                         {this.renderHistory()}
                     </ul>
                 </section>

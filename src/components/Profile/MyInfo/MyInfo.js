@@ -1,5 +1,6 @@
 import React from "react";
 import UserContext from "../../../Contexts/UserContext/UserContext";
+import "./MyInfo.css";
 
 export default class MyInfo extends React.Component{
     constructor(props){
@@ -60,7 +61,7 @@ export default class MyInfo extends React.Component{
 
                 <section id="address-section">
                     <h3>Address</h3>
-                    <p>{userAddress}</p>
+                    {userAddress}
                     <button>Edit</button>
                 </section>
 

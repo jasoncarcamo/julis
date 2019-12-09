@@ -63,8 +63,7 @@ fieldset{
     
     #custom-confirm-btn{
         display: block;
-        width: 5em;
-        height: 3em;
+        width: 5.5em;
         margin: 1em auto 2em auto !important;
         font-size: 1em;
     }
@@ -81,13 +80,13 @@ fieldset{
         display: flex;
         flex-direction: column;
         margin: 1em auto;
+        padding: 0;
     }
 
     .custom-pck ul li{
-        width: 50%;
+        width: 55%;
         margin: .3em auto;
         padding: 0;
-        border: 1px solid black;
     }
 
     .custom-pck ul input, .custom-pck ul select{
@@ -95,11 +94,7 @@ fieldset{
     }
 
     
-#custom-price{
-    margin: 1em auto;
-}
-
-#custom-confirm-btn{
-    margin: 0 auto;
-}
+    #custom-price{
+        margin: 1em auto;
+    }
 }

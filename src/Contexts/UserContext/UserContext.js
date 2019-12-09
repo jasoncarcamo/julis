@@ -32,15 +32,17 @@ export class UserProvider extends React.Component{
                 city: "",                                                              
                 state: "",                                                             
                 zip_code: "",
-                error: ""
             },
-            requests: []
+            requests: [],
+            error: ""
         };
     };
 
     componentDidMount(){
-        fetch("http://localhost:8000/api/user", {
+
+        return fetch("http://localhost:8000/api/user", {
             headers: {
+                'content-type': "application/json",
                 'authorization': `bearer ${TokenService.getToken()}`
             }
         })
@@ -53,27 +55,90 @@ export class UserProvider extends React.Component{
             })
             .then( resData => {
                 console.log(resData);
-                this.setState(resData);
+                this.setState({user: resData});
+                console.log("Fetching");
+                fetch(`http://localhost:8000/api/requests/${resData.id}`, {
+                    headers: {
+                        'authorization': `bearer ${TokenService.getToken()}`
+                    }
+                })
+                    .then( requestsRes => {
+
+                        if(!requestsRes.ok){
+                            return requestsRes.json().then( e => Promise.reject(e));
+                        };
+
+                        return requestsRes.json();
+                    })
+                    .then( requestsData => {
+                        console.log(requestsData.requests);
+
+                        let requests = requestsData.requests.filter( request => request.confirmed);
+
+                        console.log(requests);
+                        this.setState({ requests });
+                    })
+                    .catch( requestsErr => this.setState({ error: requestsErr.error}));
             })
             .catch( err => this.setState({ error: err.error}));
 
-    }
+    };
+
+    formatData = (data)=>{
+        let formatData = data.split("");
+
+        if(formatData[1] === "\"" && formatData[formatData.length - 2] === "\""){
+            formatData.shift();
+            formatData.pop();
+            formatData.shift();
+            formatData.pop();
+        };
+
+        for(let i = 0; i < formatData.length; i++){
+            if(formatData[i] === ("\\")){
+                formatData.splice(i, 1);                
+            };
+
+            if(formatData[i] === "}" && formatData[i + 1] === "\""){
+                formatData.splice(i + 1, 1);
+            }
+
+            if(formatData[i] === "}" && formatData[i + 2] === "\""){
+                formatData.splice(i + 2, 1);
+            }
+        };
+
+        formatData = formatData.join("");
+        formatData = "[" + formatData + "]";
+        
+        if(formatData === "[{}]"){
+            return this.setState({ items: []});
+        }
+        
+        formatData = JSON.parse(formatData);
+
+        return formatData;
+
+    };
 
     render(){
         console.log(this.state);
         const value = {
-            id: this.state.id,
-            first_name: this.state.first_name,                                   
-            last_name: this.state.last_name,                                       
-            email: this.state.email,  
-            mobile_number: this.state.mobile_number,                               
-            house_number: this.state.house_number,                                 
-            apartment_number: this.state.apartment_number,                         
-            street_name: this.state.street_name,                                   
-            city: this.state.city,                                                 
-            state: this.state.state,                                               
-            zip_code: this.state.zip_code
+            id: this.state.user.id,
+            first_name: this.state.user.first_name,                                   
+            last_name: this.state.user.last_name,                                       
+            email: this.state.user.email,  
+            mobile_number: this.state.user.mobile_number,                               
+            house_number: this.state.user.house_number,                                 
+            apartment_number: this.state.user.apartment_number,                         
+            street_name: this.state.user.street_name,                                   
+            city: this.state.user.city,                                                 
+            state: this.state.user.state,                                               
+            zip_code: this.state.user.zip_code,
+            requests: this.state.requests
         };
+
+        console.log(value);
 
         return (
             <UserContext.Provider value={value}>

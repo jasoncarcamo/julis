@@ -39,20 +39,21 @@ export default class Confirm extends React.Component{
 
     renderRequests = () => {
         let requests = this.context.requests;
-
+        console.log(this.context.date)
         if(this.context.requests){
-
+            console.log(this.context.date)
             if(this.context.requests.length > 0 ){
                 requests = requests.map( (request, index) => <li key={index}>{request.service}</li>);
                 
                 return (
                     <>
+                        <p style={{margin: "2em auto -1em auto"}}><strong>Services:</strong></p>
                         <ul id="confirm-ul">
                             {requests}
                         </ul>
 
-                        <p>Set for</p>
-                        <p>{new Date(this.context.date).toDateString()} at {this.context.time}</p>
+                        <p style={{marginTop: "2em"}}>Set for</p>
+                        <p>{new Date(this.context.date).toDateString()} at {this.context.time ? this.context.time : <p><strong>The time is needed. Edit your your request to include the time</strong></p>}</p>
 
                         <p> ${this.state.price}</p>
 
