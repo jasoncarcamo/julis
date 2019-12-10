@@ -1,6 +1,8 @@
 #my-info-section{
     display: flex;
     flex-direction: column;
+    height: 90vh;
+    overflow: auto;
 }
 
 #my-info-section > section{
@@ -15,4 +17,22 @@
     font-size: 1em;
     width: 5.5em;
     margin: 1em auto;
+}
+
+#rest-password-fieldset{
+    display: flex;
+}
+
+#rest-password-fieldset input{
+    display: block;
+    width: 18em;
+    height: 2em;
+    margin: .8em auto;
+}
+
+#rest-password-fieldset button{
+    display: block;
+    width: 5.5em;
+    font-size: 1em;
+    margin: .8em auto;
 }

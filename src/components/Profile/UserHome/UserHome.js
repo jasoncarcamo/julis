@@ -71,7 +71,6 @@ export default class UserHome extends React.Component{
                         return;
                     };
         
-                    console.log(futureRequests[0])
                     this.setState({requestId: futureRequests[0].id, futureRequests, loading: false });
                 })
 
