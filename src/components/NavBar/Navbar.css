@@ -11,6 +11,7 @@ nav{
 }
 
 nav h3{
+    color: #FFE6EE;
     margin-left: 5%;
 }
 
@@ -48,7 +49,7 @@ nav li{
 }
 
 .Link{
-    color: black;
+    color: pink;
     text-decoration: none;
 }
 
@@ -82,7 +83,7 @@ nav li{
         position: relative;
         z-index: 4;
         padding: 0;
-        margin: auto 1.5em auto 0;
+        margin: auto 1.1em auto 0;
     }
 
     #close-links{
@@ -103,7 +104,7 @@ nav li{
         height: .2em;
         margin: .2em 0;
         padding: 0;
-        background-color: black;
+        background-color: pink;
     }
 
     #nav-links{
@@ -147,7 +148,7 @@ nav li{
         z-index: 2;
         padding: 0;
         top: .2em;
-        right: 0;
+        right: -.3em;
         padding: 0;
         margin: 0;
     }

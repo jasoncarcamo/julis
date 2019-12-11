@@ -1,3 +1,16 @@
 #landing-page{
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#landing-page > section{
+    margin: 1.5em auto;
+}
+
+@media screen and (max-width: 770px){
+    #landing-page{
+        height: auto;
+        overflow: visible;
+    }
 }

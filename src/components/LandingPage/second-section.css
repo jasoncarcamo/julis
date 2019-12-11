@@ -1,0 +1,19 @@
+.second-section{
+    
+}
+
+.second-section li {
+    color: pink;
+    margin: .3em auto;
+}
+
+.second-section p {
+    color: pink;
+    margin: 1em auto;
+}
+
+@media screen and (max-width: 770px){
+    .second-section{
+        width: 90%;
+    }
+}

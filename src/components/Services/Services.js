@@ -31,7 +31,6 @@ export default class Services extends React.Component{
         fetch("http://localhost:8000/api/services", {
             headers: {
                 'content-type': "application/json",
-                'authorization': `bearer ${TokenService.getToken()}`
             }
         })
             .then( res => {

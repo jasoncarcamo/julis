@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+#register-section p{
+    color: pink;
+}
+
 #register-form *{
     display: block;
 }
@@ -29,6 +33,7 @@
     width: 70%;
     padding: 0;
     text-align: left;
+    color: pink;
 }
 
 input[type="tel"]{
@@ -50,9 +55,15 @@ input[type="tel"]{
 
 #register-form button {
     display: block;
-    width: 7.5em;
-    height: 4em;
-    margin: 3em auto;
+    width: 5.5em;
+    height: 3em;
+    font-size: 1em;
+    margin: 2em auto;
+    background-color: pink;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em pink;
 }
 
 @media screen and (max-width: 770px){

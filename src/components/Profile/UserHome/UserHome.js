@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import UserContext from "../../../Contexts/UserContext/UserContext";
 import { setTimeout } from "timers";
 import "./UserHome.css";
@@ -206,9 +207,14 @@ export default class UserHome extends React.Component{
 
             {this.state.loading 
                 ?
-                <p>Loading</p>
+                <p style={{textAlign: "center"}}>Loading</p>
                 :
-                this.state.futureRequests.length > 0 ? <ul>{this.renderUpcomingService()}</ul> : <p>You have no upcoming service.</p>
+                this.state.futureRequests.length > 0 
+                ? <ul>{this.renderUpcomingService()}</ul> 
+                : <p style={{textAlign: "center"}}>
+                    You do not have any services coming up. Get started
+                    <Link to="/services"> here</Link>
+                    </p>
             }
             </section>
         );

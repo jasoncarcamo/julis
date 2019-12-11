@@ -20,14 +20,12 @@ export default class ContactUs extends React.Component{
             <form id="user-contact-form" onSubmit={this.sendEmail}>
                 <fieldset id="user-contact-fieldset">
 
-                    <h4>We are happy to help</h4>
-
                     <label htmlFor="user-comment">
                         What can we help you with?
                     </label>
                     <textarea 
                         id="user-comment"
-                        placeholder="How can we help you?"
+                        placeholder="Questions or feedback?"
                         onChange={this.handleComments}></textarea>
 
                     <button type="submit">Send</button>
@@ -72,10 +70,8 @@ export default class ContactUs extends React.Component{
                 <h2>Contact us</h2>
                 <section id="user-contact-info">
                     <strong>Julis Cleaning Service</strong>
-                    <br/>
                     <p>2 Madison ave</p>
                     <p>Amityville, NY 11701</p>
-                    <br/>
                     <p>(631) 526-3306</p> 
                 </section>
 

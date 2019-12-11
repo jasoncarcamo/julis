@@ -17,6 +17,7 @@
 #user-contact-fieldset{
     display: flex;
     flex-direction: column;
+    border: .06em solid black;
 }
 
 #user-contact-fieldset label{
@@ -26,7 +27,7 @@
 #user-contact-fieldset textarea{
     display: block;
     width: 70%;
-    height: 15em;
+    height: 17.5em;
     margin: 0 auto;
 }
 
@@ -47,6 +48,6 @@
     #user-contact-fieldset textarea{
         display: block;
         width: 85%;
-        height: 12em;
+        height: 15.5em;
     }
 }

@@ -2,11 +2,14 @@
     text-align: center;
 }
 
+#login-section p{
+    color: pink;
+}
+
 #login-form{
     display: grid;
     grid-template: auto auto auto auto / 100%;
     width: 25em;
-    border: 1px solid black;
     margin: 0 auto;
     text-align: center;
 }
@@ -18,6 +21,7 @@
 #login-fieldset label{
     margin: 1.5em auto 0 auto;
     padding: 1em;
+    color: pink;
 }
 
 #login-password{
@@ -49,9 +53,16 @@ input[type=password]:focus{
 }
 
 #login-fieldset button{
-    width: 6em; 
+    display: block;
+    width: 5.5em;
     height: 3em;
-    margin: 2em auto;
+    font-size: 1em;
+    margin: 1em auto;
+    background-color: pink;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em pink;
 }
 
 @media screen and (max-width: 770px){

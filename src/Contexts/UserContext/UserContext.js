@@ -7,10 +7,13 @@ const UserContext = React.createContext({
     last_name: "",                                                     
     email: "",  
     mobile_number:"",                                             
-    house_number: "",                                               apartment_number: "",                                       
+    house_number: "",                                               
+    apartment_number: "",                                       
     street_name: "",                                                 
     city: "",                                                               
-    state: "",                                                             zip_code: ""
+    state: "",                                                             
+    zip_code: "",
+    refreshUserInfo: ()=>{}
 });
 
 export default UserContext;
@@ -121,6 +124,10 @@ export class UserProvider extends React.Component{
 
     };
 
+    refreshUserInfo = () =>{
+        this.componentDidMount();
+    }
+
     render(){
         console.log(this.state);
         const value = {
@@ -135,7 +142,8 @@ export class UserProvider extends React.Component{
             city: this.state.user.city,                                                 
             state: this.state.user.state,                                               
             zip_code: this.state.user.zip_code,
-            requests: this.state.requests
+            requests: this.state.requests,
+            refreshUserInfo: this.refreshUserInfo
         };
 
         console.log(value);

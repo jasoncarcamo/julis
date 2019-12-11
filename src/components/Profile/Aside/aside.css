@@ -14,6 +14,10 @@
     margin: 0;
 }
 
+#aside-section ul li *{
+    text-decoration: none;
+}
+
 @media screen and (max-width:770px){
     #aside-section{
         height: 4em;

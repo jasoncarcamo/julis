@@ -5,6 +5,7 @@
 #about-section > p{
     width: 90%;
     margin: 1.5em auto;
+    color: pink;
 }
 
 #contact-us-info{
@@ -13,11 +14,19 @@
     text-align: center;
 }
 
+#contact-us-info p{
+    color: pink;
+}
+
 #contact-us-section{
     width: 45%;
     margin: 0 auto;
     border: 1px solid #000000;
     text-align: center;
+}
+
+#contact-us-section h4{
+    color: pink;
 }
 
 #contact-us-fieldset{
@@ -28,6 +37,7 @@
 
 #contact-us-fieldset label{
     margin-top: 1em;
+    color: pink;
 }
 
 #contact-us-fieldset input{
@@ -50,6 +60,12 @@
     height: 3em;
     font-size: 1em;
     margin: 1em auto;
+    background-color: pink;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em pink;
+
 }
 
 
@@ -60,7 +76,8 @@
     }
 
     #contact-us-fieldset input{
-        width: 75%;
+        width: 18em;
+        
     }
     
     #contact-us-fieldset textarea{

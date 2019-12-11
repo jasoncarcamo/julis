@@ -36,3 +36,10 @@
     font-size: 1em;
     margin: .8em auto;
 }
+
+@media screen and (max-width: 770px){
+    #my-info-section{
+        height: auto;
+        overflow: visible;
+    }
+}

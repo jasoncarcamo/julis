@@ -8,6 +8,8 @@ export default class Confirm extends React.Component{
         super(props);
         this.state = {
             price: 0,
+            confirm: false,
+            complete: false,
             cancel: false
         };
     };
@@ -15,26 +17,23 @@ export default class Confirm extends React.Component{
     static contextType = RequestsContext;
 
     componentDidMount(){
-        let price = 0
-        let requests = this.context.requests;
+
+        setTimeout(()=>{
+            console.log(this.context.requests)
+            let price = 0
+            let requests = this.context.requests;
 
 
-        if(requests){
-            if(requests.length > 0){
-                requests.forEach( request => {
-                    price += Number(request.price);
-                });
-        
-                this.setState({ price });
-            }
-        }
-
-        if(this.context.requests){
-            console.log(this.context.requests, this.props.services);
-        } else{
-            console.log(this.context);
-        }
-        console.log(this.props.services)
+            if(requests){
+                if(requests.length > 0){
+                    requests.forEach( request => {
+                        price += Number(request.price);
+                    });
+            
+                    this.setState({ price });
+                }
+            };
+        }, 400);
     }
 
     renderRequests = () => {
@@ -58,43 +57,62 @@ export default class Confirm extends React.Component{
                         <p> ${this.state.price}</p>
 
                         {this.state.cancel ? <p>Are you sure?</p> : ""}
+                        {this.state.confirm ? <p>Confirm?</p> : ""}
+                        
 
                         <section id="confirm-btn-container">
                             
-                            {!this.state.cancel ? (
-                                <>
-                                    <button>
-                                        <Link to="/services">
-                                            Edit requests
-                                        </Link>
-                                    </button>
+                            {!this.state.cancel  && !this.state.confirm
+                                ? 
+                                (
+                                    <>
+                                        <button>
+                                            <Link to="/services">
+                                                Edit requests
+                                            </Link>
+                                        </button>
 
-                                    <button>
-                                        <Link to="/services/checkout">
+                                        <button onClick={this.handleConfirmBtn}>
                                             Go to checkout
-                                        </Link>
-                                    </button>
+                                        </button>
 
-                                    <button onClick={this.handleCancelBtn}>Cancel requests</button>
-                                </>
-                            )
+                                        <button onClick={this.handleCancelBtn}>Cancel requests</button>
+                                    </>
+                                )
                                 :
 
-                            <>
-                                <button onClick={this.handleCancelRequests}>Yes</button>
-                                <button onClick={this.handleCancelBtn}>Go back</button>   
-                            </>
+                                    <>
+                                        {
+                                            this.state.confirm
+                                                ?
+                                                <>
+                                                    <button onClick={this.handleSubmit}>Yes</button>
+                                                    <button onClick={this.handleConfirmBtn}>No</button>
+                                                </>
+                                                :
+                                                <>
+                                                    <button onClick={this.handleCancelRequests}>Yes</button>
+                                                    <button onClick={this.handleCancelBtn}>Go back</button>   
+                                                </>
+                                        }
+                                    </>
                         }
                         </section>
                     </>
                 );
 
             } else{
-                return <p>No requests have been requested.</p>
+                return <p style={{ width: "90%", margin: "0 auto"}}>
+                            No requests have been requested. Get started 
+                            <Link to="/services"> here</Link>
+                        </p>
             }
 
         } else{
-            return <p>No requests have been requested.</p>
+            return <p style={{ width: "90%", margin: "0 auto"}}>
+                    No requests have been requested.
+                    <Link to="/services"> here</Link>
+                </p>
         }
     }
 
@@ -102,17 +120,36 @@ export default class Confirm extends React.Component{
         this.setState({cancel: !this.state.cancel});
     }
 
+    handleConfirmBtn = () => {
+        this.setState({ confirm: !this.state.confirm, cancel: false})
+    }
+
     handleCancelRequests = () => {
         this.context.resetRequests();
         this.props.history.push("/");
     }
 
+    renderComplete = () => {
+        return (
+            <section>
+                <p>Requests have been processed.</p>
+                <button onClick={()=> this.props.history.push("/user")}>Ok</button>
+            </section>
+        );
+    };
+
+    handleSubmit = (e) => {
+        this.context.completeRequests();
+        this.setState({ complete: true});
+
+    };
+
     render(){
-        console.log(this.state.price);
+        console.log(this.state);
 
         return (
             <section id="confirm-section">
-                {this.renderRequests()}
+                {!this.state.complete ? this.renderRequests() : this.renderComplete()}
             </section>
         );
     }

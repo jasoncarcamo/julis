@@ -109,7 +109,7 @@ export default class Schedule extends React.Component{
         let futureRequests = this.state.futureRequests;
 
         if(futureRequests.length == 0){
-            return <p style={{textAlign: "center"}}>You do not have any services coming up. <Link to="/services">Request services here</Link></p>
+            return <p style={{textAlign: "center"}}>You do not have any services coming up. Get started<Link to="/services"> here</Link></p>
         };
 
         futureRequests = futureRequests.map( ( request, index) => {

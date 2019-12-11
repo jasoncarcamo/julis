@@ -2,6 +2,7 @@ import React from "react";
 import UserContext from "../../../Contexts/UserContext/UserContext";
 import "./MyInfo.css";
 import TokenService from "../../../TokenService/TokenService";
+import EditAddressForm from "./EditAddress/EditAddressForm";
 
 export default class MyInfo extends React.Component{
     constructor(props){
@@ -12,6 +13,7 @@ export default class MyInfo extends React.Component{
             },
             password: "",
             confirmPassword: "",
+            resetAddress: true,
             resetPassword: false,
             resetSuccess: "",
             error: ""
@@ -24,6 +26,10 @@ export default class MyInfo extends React.Component{
         this.setState({user: this.context});
     }
 
+    //The settings to chage the users address starts here
+
+
+    //The setting to reset the users password starts here
     handlePasswordreset = (e)=> {
         e.preventDefault();
 
@@ -145,7 +151,7 @@ export default class MyInfo extends React.Component{
         const userAddress = (
             <>
                 <p>
-                    {this.context.house_number} {this.context.apartment_number} {this.context.street_name}
+                    {this.context.house_number} {this.context.apartment_number !== "" && this.context.apartment_number !== "null" ? this.context.apartment_number : ""} {this.context.street_name}
                 </p>
                 <p>
                     {this.context.city}, {this.context.state} {this.context.zip_code}
@@ -160,7 +166,7 @@ export default class MyInfo extends React.Component{
                 <section id="address-section">
                     <h3>Address</h3>
                     {userAddress}
-                    <button>Edit</button>
+                    {this.state.resetAddress ? <EditAddressForm/> : ""}
                 </section>
 
                 <section id="rest-password-section">

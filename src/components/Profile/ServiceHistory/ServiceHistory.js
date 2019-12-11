@@ -91,7 +91,7 @@ export default class ServiceHistory extends React.Component{
         });
 
         if(confirmedRequests.length == 0){
-            return <p style={{textAlign: "center"}}>There are no past requests yet. <Link to="/services">Request services here</Link></p>
+            return <p style={{textAlign: "center"}}>There are no past requests yet. Get started<Link to="/services"> here</Link></p>
         };
 
         confirmedRequests = confirmedRequests.map( ( request, index) => {

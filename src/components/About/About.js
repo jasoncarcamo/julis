@@ -119,18 +119,17 @@ export default class About extends React.Component{
                 <p>Setting up an appointment is quick and easy. Get started <Link to="/services">here</Link>.</p> 
 
                 <section id="contact-us-info">
-                    <strong>Julis Cleaning Service</strong>
-                    <br/>
+                    <p><strong>Julis Cleaning Service</strong></p>
+                    
                     <p>2 Madison ave</p>
                     <p>Amityville, NY 11701</p>
-                    <br/>
-                    (631) 526-3306  
+                    
+                    <p>(631) 526-3306   </p>
                 </section>       
 
                 <section id="contact-us-section">
 
-                    <h4>We are happy to help! Email us</h4>
-
+                    <h4>Email us</h4>
                     {this.state.emailSent ? <p>Thank you for reaching out to us. We will contact you as soon as possible!</p> : this.renderContactForm()}
                 </section>
             </section>
