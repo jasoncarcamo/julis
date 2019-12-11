@@ -89,7 +89,7 @@ export default class Register extends React.Component{
                             onChange={this.handleMobileNumber}
                             disableDropdown={true}
                             inputClass="register-mobile-number"
-                            />
+                            required/>
                         :
                     name === "Apartment number"
                         ?

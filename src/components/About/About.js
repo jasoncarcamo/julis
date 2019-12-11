@@ -100,7 +100,7 @@ export default class About extends React.Component{
                 return res.json();
             })
             .then( resData => {
-
+                console.log(resData)
                 this.setState({ emailSent: true });
 
             })

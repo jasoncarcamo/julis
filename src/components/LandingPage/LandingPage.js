@@ -23,6 +23,10 @@ export default class LandingPage extends React.Component{
 
                 <section className="second-section">
 
+                    <p>From deep cleaning your kitchen and bathrooms to changing your bed linens, we are dedicated to creating clean, and safe living environments.</p>
+
+                    <p>We are proud to use environmentally-conscious products that are safe for people and pets.</p>
+
                     <ul>
                         <li>No contracts</li>
                         <li>Our chemicals are non-hazardous to humans, the environment and your pets</li>
@@ -30,10 +34,6 @@ export default class LandingPage extends React.Component{
                         <li>Easy and quick appointment setups</li>
                         <li>We strive to gain your loyalty so you can worry about important things</li>
                     </ul>
-
-                    <p>From deep cleaning your kitchen and bathrooms to changing your bed linens, we are dedicated to creating clean, and safe living environments.</p>
-
-                    <p>We are proud to use environmentally-conscious products that are safe for people and pets.</p>
 
                     <button className="request-service" onClick={this.redirectToServices}> Get started</button>
                     

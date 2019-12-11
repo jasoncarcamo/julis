@@ -1,15 +1,15 @@
 .second-section{
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .second-section li {
-    color: pink;
     margin: .3em auto;
 }
 
 .second-section p {
-    color: pink;
-    margin: 1em auto;
+    
 }
 
 @media screen and (max-width: 770px){

@@ -2,7 +2,6 @@
     width: 35em;
     margin: 0 auto;
     text-align: center;
-    color: pink;
 }
 
 .request-service{
@@ -11,11 +10,11 @@
     width: 6.5;
     height: 2.5em;
     margin: 3.5em auto 2.5em auto;
-    background-color: pink;
+    background-color: skyblue;
     border: none;
     border-radius: .3em;
     color: white;
-    box-shadow: 0 0 .2em pink;
+    box-shadow: 0 0 .2em skyblue;
 }
 
 @media screen and (max-width: 770px){
