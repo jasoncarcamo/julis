@@ -1,4 +1,5 @@
 body {
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  background-color: rgb(253, 246, 248);
 }
 
 code {
@@ -19,5 +20,6 @@ code {
 @media screen and (max-wdith: 770px){
     body{
         font-size: 16px;
+        width: 100%;
     }
 }

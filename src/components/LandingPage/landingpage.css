@@ -2,15 +2,411 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    padding: 0;
+
 }
 
 #landing-page > section{
-    margin: 1.5em auto;
+}
+
+/*First section */
+#first-section > section{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+#first-section > section > p{
+    width: 95%;
+    margin: auto;
+    background-color: white;
+    font-size: .85em;
+    line-height: 1.95em;
+    word-spacing: .2em;
+    text-align: center;
+    padding: 0 2.5em;
+}
+
+#first-section > section > section {
+    width: 57%;
+    margin: 0;
+    padding:  0 1em;
+    background-color: pink;
+}
+
+#first-section > section > section p{
+    width: 100%;
+    margin: 0 auto -.9em auto;
+    color: white;
+    font-size: 1.75em;
+    text-align: center;
+    line-height: .95em;
+    padding: 2.1em 0;
+}
+
+#first-section > section > section button{
+    display: block;
+    width: 13.1em;
+    height: 2.55em;
+    font-size: 1.63em;
+    text-align: center;
+    margin: -1.7em auto 2.2em auto;
+    border: .10em solid white;
+    color: white;
+    background-color: pink;
+}
+
+/* Second section */
+#second-section{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(241, 241, 241);
+}
+
+#second-section > p{
+    text-align: center;
+    font-size: 2.15em;
+    margin-top: 2.45em;
+}
+
+#second-section > section{
+
+}
+
+#second-section ul{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5.5em auto;
+}
+
+#second-section ul > li{
+}
+
+.pitch-header{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.pitch{
+    font-size: .97em;
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.to-services-btn{
+    display: block;
+    font-size: .83em;
+    width: 13.92em;
+    height: 2.7em;
+    border-radius: .2em;;
+    margin: 7.5em auto;
+    border: none;
+    background-color: pink;
+    color: white;
+}
+
+/* Third section */
+
+#third-section{
+    display: flex;
+    padding: 0;
+    background-color: white;
+}
+
+.third-1sect{
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    background-color: white
+}
+
+.third-2sect{
+
+}
+
+.third-2sect p{
+    text-align: center;
+    font-size: 2.15em;
+    width: 80%;
+    margin: 3.5em auto .5em auto;
+}
+
+.third-2sect ul{
+    margin: 0 auto 8.5em auto;
+}
+
+.third-2sect ul li{
+    width: 80%;
+    list-style: disc;
+    font-size: .9em;
+    margin: .5em auto;
+}
+
+/* Fourth section */
+#fourth-section{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#fourth-section > p{
+    font-size: 2.15em;
+    text-align: center;
+    margin: 3.25em auto 0 auto;
+}
+
+.fourth-1sect{
+    display: flex;
+    margin: 3em auto 7em auto;
+}
+
+.fourth-1sect > li{
+    border: .06em solid lightgray;
+    margin: 0 1em;
+    width: 25%;
+    height: auto;
+}
+
+.fourth-1sect > li > h5{
+    font-size: 1.4em;
+    text-align: center;
+    color: pink;
+}
+
+.fourth-1sect > li > p{
+    width: 90%;
+    text-align: center;
+    margin: 1em auto;
+}
+
+/* Fifth section */
+#fifth-section{
+    display: flex;
+    height: 7.5em;
+    background-color: orangered;
+}
+
+#fifth-section > p{
+    font-size: 1.7em;
+    color: white;
+    margin: auto auto auto 6em;
+}
+
+.to-services-btn2{
+    display: block;
+    font-size: .9em;
+    width: 8.62em;
+    height: 2.5em;
+    border-radius: .2em;;
+    margin: 3.1em 10em 0 1em;
+    border: none;
+    background-color: white;
+    color: orangered;
 }
 
 @media screen and (max-width: 770px){
     #landing-page{
         height: auto;
         overflow: visible;
+    }
+
+    /*First section */
+    #first-section > section{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #first-section > section > p{
+        width: auto;
+        margin: 0;
+        background-color: white;
+        font-size: .8em;
+        line-height: 1.95em;
+        word-spacing: .2em;
+        text-align: center;
+        padding: 3.8em 1.5em;
+    }
+    
+    #first-section > section > section {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: pink;
+    }
+    
+    #first-section > section > section p{
+        width: 65%;
+        margin: 0 auto -.9em auto;
+        color: white;
+        font-size: 1.09em;
+        text-align: center;
+        line-height: 1em;
+        padding: 2.4em 1.5em;
+    }
+    
+    #first-section > section > section button{
+        display: block;
+        width: 15.02em;
+        height: 3.55em;
+        font-size: 1em;
+        text-align: center;
+        margin: -.5em auto 2.6em auto;
+        border: .15em solid white;
+        color: white;
+        background-color: pink;
+    }    
+
+    /* Second section */
+    #second-section{
+        
+    }
+
+    #second-section > p{
+        text-align: center;
+        font-size: 1.3em;
+        margin: 2.8em auto 0 auto;
+        width: 90%;
+        
+    }
+
+    #second-section > section{
+        padding: 0;
+        margin: 0;
+    }
+
+    #second-section ul{
+        flex-direction: column;
+        padding: 0;
+    }
+
+    #second-section li{
+        margin: 0;
+        padding: 0;
+    }
+
+    #second-section li > p{
+        font-size: 1.12em;
+        text-align: center;
+        color: #808285
+    }
+
+    .pitch-header{
+        font-size: 1.1em;
+        text-align: center;
+        padding: 0 .4em;
+    }
+
+    .pitch{
+        padding: 0 .5em;
+        text-align: center;
+        font-size: .95em;
+    }
+
+    .to-services-btn{
+        display: block;
+        font-size: .83em;
+        width: 12.62em;
+        height: 2.5em;
+        border-radius: .2em;;
+        margin: 5em auto;
+        border: none;
+        background-color: pink;
+        color: white;
+    }
+
+    /* Third section */
+    #third-section{
+        flex-direction: column;
+    }
+
+    .third-1sect{
+        width: 100%;
+        height: 11em;
+        
+    }
+
+    .third-2sect{
+        background-color: rgb(218, 205, 205);
+    }
+
+    .third-2sect > p{
+        text-align: center;
+        font-size: 1.3em;
+        width: 90%;
+        margin: 1.2em auto;
+    }
+
+    .third-2sect > ul{
+        margin: 0 0 2em 1.6em;
+        padding: 0 2em;
+    }
+
+    .third-2sect li{
+        list-style: disc;
+        font-size: .8em;
+        margin: .9em auto;
+        width: 90%;
+    }
+
+    /* Fourth section */
+    #fourth-section > p{
+        font-size: 1.3em;
+        width: 80%;
+        margin: 3.1em auto 1em auto;
+        text-align: center;
+    }
+
+    .fourth-1sect{
+        flex-direction: column;
+        margin: 0 0 4em 0;
+        padding: 0;
+    }
+
+    .fourth-1sect > li{
+        width: 85%;
+        height: auto;
+        margin: 1.1em auto;
+        border: .06em solid lightgray;
+    }
+
+    .fourth-1sect > li > h5{
+        font-size: 1.35em;
+        text-align: center;
+        margin: 1.5em 0;
+    }
+
+    .fourth-1sect > li > p{
+        font-size: .8em;
+        text-align: center;
+        width: 90%;
+        margin: 1.1em auto 1.7em auto;
+    }
+
+    /* Fifth section */
+    #fifth-section{
+        flex-direction: column;
+        height: auto;
+    }
+
+    #fifth-section > p{
+        width: 80%;
+        margin: 2.6em auto -1em auto;
+        text-align: center;
+        color: white;
+    }
+
+    .to-services-btn2{
+        display: block;
+        font-size: .9em;
+        width: 8.62em;
+        height: 2.5em;
+        border-radius: .2em;;
+        margin: 4em auto 2.8em auto;
+        border: none;
+        background-color: pink;
+        color: white;
     }
 }

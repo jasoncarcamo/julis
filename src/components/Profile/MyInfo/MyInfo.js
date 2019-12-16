@@ -52,11 +52,11 @@ export default class MyInfo extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log(resData);
+                
                 this.setState({ resetSuccess: resData.success});
             })
             .catch( err => {
-                console.log(err)
+                
                 return this.setState({ error: err.error})
             });
     }
@@ -158,7 +158,7 @@ export default class MyInfo extends React.Component{
                 </p>
             </>
             );
-        console.log(this.state)
+        
         return (
             <section id="my-info-section">
                 <h2>My info</h2>

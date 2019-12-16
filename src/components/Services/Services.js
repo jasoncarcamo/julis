@@ -48,11 +48,10 @@ export default class Services extends React.Component{
                     time: this.convertTime(this.context.time),
                 });
 
-                console.log(initialCleaning);
                 if(this.context.requests){
 
                     const requests = this.context.requests;
-                    console.log()
+
                     for(let i = 0; i < services.length; i++){
 
                         for(let j = 0; j < requests.length; j++){
@@ -62,7 +61,7 @@ export default class Services extends React.Component{
                             };
 
                             if(initialCleaning.checked){
-                                console.log("checked")
+                                
                                 for(let i = 0; i < services.length; i++){
                                     if(services[i].name === "Bed rooms" || services[i].name === "Kitchen" || services[i].name === "Glass doors / Windows"){
                                         
@@ -78,7 +77,6 @@ export default class Services extends React.Component{
 
                                 service.classList.remove("show-custom-services");
                                 service.classList.add("show-custom-services");
-                                console.log(true)
                                 services[i].checked = true;
                             };
                         };
@@ -94,7 +92,6 @@ export default class Services extends React.Component{
     };
 
     convertTime = (time)=>{
-        console.log(time)
 
         if(!time){
             return "";
@@ -125,7 +122,7 @@ export default class Services extends React.Component{
         let requestIndex;
 
         requestIndex = requests.map( e => e.service).indexOf("Initial cleaning");
-        console.log(requestIndex);
+        
     }
 
     updateServices = (e) => {
@@ -201,15 +198,14 @@ export default class Services extends React.Component{
 
     handleTime = (time) => {
         const newTime = this.formatTime(time);
-        this.setState({time})
-        console.log(newTime);
+        this.setState({time});
         this.context.updateTime(newTime);
     }
 
     formatTime = (time)=>{
-        console.log(time)
         let newTime;
         const arr = time.split(':');
+
         if(arr[0] > 12){
             arr[0] = arr[0] - 12 ;
             newTime = arr.join(':') + ' PM';
@@ -246,11 +242,12 @@ export default class Services extends React.Component{
     };
 
     render(){
-        console.log(this.state.date)
+        
         return (
             <section 
             id="services-section"
             className="text-center">
+                
                 <section className="initial-pck">
                     <h2 className="display-4">Our Initial cleaning</h2>
                     <h5>* Only Includes:</h5>
@@ -282,7 +279,7 @@ export default class Services extends React.Component{
                     </form>
                 </section>
 
-                <h4 onClick={this.showCustomServices}>Custom services</h4>
+                <button className="custom-service-btn" onClick={this.showCustomServices}>Custom services</button>
 
                 <section className="custom-pck">
 

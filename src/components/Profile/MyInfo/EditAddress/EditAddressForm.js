@@ -27,7 +27,6 @@ export default class EditAddressForm extends React.Component{
 
     handleEditConfirm = () => {
         this.setState({
-            resetAddress: !this.state.resetAddress,
             house_number: "", 
             apartment_number: "", 
             street_name: "", 
@@ -66,7 +65,7 @@ export default class EditAddressForm extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log(resData);
+                
                 this.setState({ resetAddress: !this.state.resetAddress, resetSuccess: "Hello"})
                 this.context.refreshUserInfo();
             })

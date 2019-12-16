@@ -26,11 +26,13 @@ nav h3{
     display: none !important;
 }
 
-nav ul{
+#nav-links{
     display: flex;
+    display: -ms-flexbox;
     margin: 0;
     padding: 0;
     width: 50%;
+    min-width: 0;
     justify-content: space-evenly;
 }
 
@@ -44,7 +46,7 @@ nav ul li{
 }
 
 nav li{
-    margin: auto 0;
+    margin: auto ;
 }
 
 .Link{
@@ -113,7 +115,7 @@ nav li{
         width: 100vw;
         padding-bottom: 3em;
         top: 0;
-        left: -.05em;
+        left: 0;
         text-align: center;
         background-color: white;
         flex-direction: column;

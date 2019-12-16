@@ -58,7 +58,7 @@ export default class Register extends React.Component{
                 <label 
                     key={index} 
                     htmlFor={`register_${targetName[index]}`}>
-                    * {name}
+                    {name}
                     {name === "Password" || name === "Confirm password"
                         ? 
                     (
@@ -114,14 +114,12 @@ export default class Register extends React.Component{
             );
         });
 
-        console.log(inputList)
-
         return inputList;
 
     }
 
     handleMobileNumber = (value) => {
-        console.log(value)
+        
         this.setState({
             mobile_number: value
         })
@@ -129,7 +127,7 @@ export default class Register extends React.Component{
 
     handleUserInputs = (e) => {
         e.preventDefault();
-        console.log(e.target.name);
+        
         this.setState({ [e.target.name]: e.target.value});
 
     }
@@ -209,8 +207,6 @@ export default class Register extends React.Component{
     }
 
     render(){
-
-        console.log(this.state.mobile_number);
 
         return (
             <section id="register-section">

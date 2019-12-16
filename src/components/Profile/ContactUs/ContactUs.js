@@ -26,7 +26,8 @@ export default class ContactUs extends React.Component{
                     <textarea 
                         id="user-comment"
                         placeholder="Questions or feedback?"
-                        onChange={this.handleComments}></textarea>
+                        onChange={this.handleComments}
+                        required></textarea>
 
                     <button type="submit">Send</button>
                 </fieldset>

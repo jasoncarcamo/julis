@@ -6,8 +6,8 @@
 }
 
 #app-container > section{
-  margin-top: 7em;
-  padding-bottom: 5em;
+  margin: 7em auto 0 auto;
+  padding-bottom: 3.6em;
 }
 
 li{

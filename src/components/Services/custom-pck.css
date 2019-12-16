@@ -3,6 +3,9 @@
     width: 60%;
     margin: 2em auto;
     border: 1px solid black;
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: .2em;
 }
 
 fieldset{
@@ -22,11 +25,13 @@ fieldset{
     grid-gap: 1em;
     padding: 0;
     font-size: 1.1em;
+    
 }
 
 .custom-pck ul input, .custom-pck ul select{
     border: 1px solid black;
     margin-left: 28%;
+    
 }
 
 #custom-price{
@@ -39,15 +44,32 @@ fieldset{
 
 #custom-confirm-btn{
     display: block;
-    width: 5em;
+    width: 5.5em;
     height: 3em;
-    margin: 1em auto 2em auto;
     font-size: 1em;
+    margin: 3em auto;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em skyblue;
 }
 
 .confirm-form label{
     display: block;
     margin: 1em auto 0 auto;
+}
+
+.react-date-picker{
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: .2em;
+}
+
+.react-time-picker{
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: .2em;
 }
 
 @media screen and (min-width: 540px) and (max-width: 770px){

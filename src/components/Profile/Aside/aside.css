@@ -2,7 +2,8 @@
     height: 90vh;
     padding: 0;
     text-align: center;
-    border: 1px solid black;
+    border-right: 1px solid black;
+    margin-bottom: 1em;
 }
 
 #aside-section ul{
@@ -14,8 +15,13 @@
     margin: 0;
 }
 
+#aside-section li{
+    margin: auto;
+}
+
 #aside-section ul li *{
     text-decoration: none;
+    color: black;
 }
 
 @media screen and (max-width:770px){

@@ -3,7 +3,10 @@
     height: 25em;
     margin: 0 auto;
     text-align: center;
-    border: 1px solid black;
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: 1em;
+    box-shadow: .2em .2em .8em gainsboro;
 }
 
 .initial-pck fieldset{
@@ -37,19 +40,25 @@
     width: 10em;
     height: 3em;
     margin: 1.5em auto auto auto;
-}
-
-
-#services-section > h4 {
-    text-align: center;
-    padding: .7em;
-    width: 7em;
-    margin: 2em auto;
-    border : .05em solid black;
+    
 }
 
 .show-custom-services{
     display: block !important;
+}
+
+.custom-service-btn{
+    display: block;
+    color: white;
+    background-color: pink;
+    border: none;
+    border-radius: .3em;
+    text-align: center;
+    padding: .7em;
+    width: 7em;
+    font-size: 1.3em;
+    margin: 2em auto;
+    box-shadow: .1em .1em .4em lightgray;
 }
 
 

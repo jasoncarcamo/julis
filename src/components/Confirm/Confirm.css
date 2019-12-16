@@ -2,7 +2,11 @@
     width: 35em;
     text-align: center;
     padding: 0;
-    margin: 0 auto;
+    border: 1px solid black;
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: 1em;
+    box-shadow: .2em .2em .8em gainsboro;
 }
 
 #confirm-ul{
@@ -26,9 +30,14 @@
     justify-content: space-evenly;
 }
 
-#confirm-btn-container button{
-    width: 7em;
-    height: 4em;
+#confirm-section button{
+    width: 5.5em;
+    height: 3em;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em skyblue;
 }
 
 @media screen and (max-width: 770px){

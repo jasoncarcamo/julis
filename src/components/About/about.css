@@ -3,7 +3,7 @@
 }
 
 #about-section > p{
-    width: 90%;
+    width: 85%;
     margin: 1.5em auto;
 }
 
@@ -17,31 +17,43 @@
 }
 
 #contact-us-section{
-    width: 45%;
+    display: flex;
     margin: 0 auto;
-    border: 1px solid #000000;
     text-align: center;
+    background-color: rgb(255, 255, 255);
 }
 
-#contact-us-section h4{
+#contact-us-section > p{
+    margin-top: 10em;
+    height: auto;
+}
 
+#contact-us-fieldset > p{
+    font-size: 2em;
+    color: #808285;
 }
 
 #contact-us-fieldset{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    width: 45em;
     padding: 0;
 }
 
 #contact-us-fieldset label{
-    margin-top: 1em;
+    margin: 2em auto auto auto;
+    color: #808285;
 }
 
 #contact-us-fieldset input{
     display: block;
     width: 18em;
     height: 2em;
-    margin: 0 auto;
+    margin: auto;
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: .2em;
 }
 
 #contact-us-fieldset textarea{
@@ -49,6 +61,9 @@
     width: 85%;
     height: 15em;
     margin: 0 auto;
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: .2em;
 }
 
 #contact-us-fieldset button{
@@ -56,7 +71,7 @@
     width: 5.5em;
     height: 3em;
     font-size: 1em;
-    margin: 1em auto;
+    margin: 3em auto;
     background-color: skyblue;
     color: white;
     border: none;
@@ -65,12 +80,42 @@
 
 }
 
+/* Contact us list */
+#contact-us-container{
+    margin: auto;
+    padding: 0;
+}
+
+.contact-us-list{
+    margin: 7em auto;
+    color: #808285;
+}
+
+.contact-us-list p{
+    text-align: center;
+}
+
 
 @media screen and (max-width: 770px){
 
     #contact-us-section{
         width: 100%;
+        margin: 0;
+        flex-direction: column;
     }
+
+    #contact-us-form{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #contact-us-fieldset{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
 
     #contact-us-fieldset input{
         width: 18em;
@@ -80,5 +125,7 @@
     #contact-us-fieldset textarea{
         width: 80%;
     }
+
+    
 
 }

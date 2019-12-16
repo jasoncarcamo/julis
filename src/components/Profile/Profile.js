@@ -22,7 +22,7 @@ export default class Profile extends React.Component{
 
     componentDidMount(){
 
-        console.log(this.context)
+        
     };
 
     render(){

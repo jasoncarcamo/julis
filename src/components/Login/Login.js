@@ -18,6 +18,9 @@ export default class extends React.Component{
     static contextType = RequestsContext;
 
     componentDidMount(){
+        if(TokenService.hasToken()){
+            this.props.history.push("/user");
+        }
     }
 
     handleInput = (e)=>{
@@ -48,7 +51,7 @@ export default class extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log(this.context)
+                
                 TokenService.saveToken(resData.token);
                 this.context.refreshPage();
                 this.props.history.push("/user")
@@ -57,15 +60,14 @@ export default class extends React.Component{
     };
 
     render(){
-        console.log(this.state)
+        
         return (
             <section id="login-section">
                 <form id="login-form" onSubmit={this.handleSubmit}>
                     <fieldset id="login-fieldset">
                         <label htmlFor="login-mobile-number">
                             Mobile number
-                        </label>
-                        <MuiPhoneNumber 
+                            <MuiPhoneNumber 
                             id="login-mobile-number"
                             inputClass="login-mobile-number"
                             defaultCountry={"us"}
@@ -73,6 +75,8 @@ export default class extends React.Component{
                             onChange={this.handleMobileNumber}
                             disableDropdown={true}
                             />
+                        </label>
+                        
 
                         <label htmlFor="login-password">
                             Password
@@ -89,8 +93,8 @@ export default class extends React.Component{
                     </fieldset>
                 </form>
                 <p>
-                    Don't have an account? 
-                    <Link to="/register"> Sign up here</Link>
+                    Don't have an account? Sign up
+                    <Link to="/register"> here</Link>
                 </p>
             </section>
         );

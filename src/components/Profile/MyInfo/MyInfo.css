@@ -12,11 +12,17 @@
     margin: 1em 0;
 }
 
-#my-info-section  section > button{
+#my-info-section button{
     display: block;
     font-size: 1em;
     width: 5.5em;
+    height: 3em;;
     margin: 1em auto;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em skyblue;
 }
 
 #rest-password-fieldset{

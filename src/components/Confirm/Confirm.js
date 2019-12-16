@@ -19,7 +19,7 @@ export default class Confirm extends React.Component{
     componentDidMount(){
 
         setTimeout(()=>{
-            console.log(this.context.requests)
+            
             let price = 0
             let requests = this.context.requests;
 
@@ -38,9 +38,9 @@ export default class Confirm extends React.Component{
 
     renderRequests = () => {
         let requests = this.context.requests;
-        console.log(this.context.date)
+        
         if(this.context.requests){
-            console.log(this.context.date)
+            
             if(this.context.requests.length > 0 ){
                 requests = requests.map( (request, index) => <li key={index}>{request.service}</li>);
                 
@@ -66,14 +66,12 @@ export default class Confirm extends React.Component{
                                 ? 
                                 (
                                     <>
-                                        <button>
-                                            <Link to="/services">
-                                                Edit requests
-                                            </Link>
+                                        <button onClick={()=> this.props.history.push("/services")}>
+                                            Edit requests
                                         </button>
 
                                         <button onClick={this.handleConfirmBtn}>
-                                            Go to checkout
+                                            Confirm
                                         </button>
 
                                         <button onClick={this.handleCancelBtn}>Cancel requests</button>
@@ -145,7 +143,6 @@ export default class Confirm extends React.Component{
     };
 
     render(){
-        console.log(this.state);
 
         return (
             <section id="confirm-section">

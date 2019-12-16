@@ -17,12 +17,9 @@ export default class Schedule extends React.Component{
     static contextType = UserContext;
 
     componentDidMount(){
-        console.log(this.context);   
+          
         
         setTimeout(()=> {
-            console.log("Timeouf")
-            
-            console.log(this.context.requests)
 
             fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
                 headers: {
@@ -38,7 +35,6 @@ export default class Schedule extends React.Component{
                     return res.json();
                 })
                 .then( resData => {
-                    console.log(resData.requests)
                     let futureRequests = resData.requests;
 
                     futureRequests = futureRequests.filter( request => {
@@ -49,8 +45,8 @@ export default class Schedule extends React.Component{
 
                     futureRequests.forEach( request => {
                         request.service = this.formatData(request.service);
-                        console.log(request.service)
-                    })
+                        
+                    });
         
                     futureRequests.sort( (a, b) => {
                         let aDate = new Date(a.date);
@@ -86,14 +82,14 @@ export default class Schedule extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log(resData)
+                
                 this.componentDidMount();
             })
             .catch( err => this.setState({ error: err.error}))
     }
 
     renderServices = (services) => {
-        console.log(services)
+        
         let allServices = services.map( (service, index) => {
             return (
                 <li key={index} style={{listStyle: "disc"}}>
@@ -113,7 +109,7 @@ export default class Schedule extends React.Component{
         };
 
         futureRequests = futureRequests.map( ( request, index) => {
-            console.log(request.id)
+            
             return (
                 <li key={index}>
                     <p><strong>Date:</strong> {new Date(request.date).toDateString()}</p>
@@ -189,7 +185,7 @@ export default class Schedule extends React.Component{
     };
 
     render(){
-        console.log(this.state);
+        
         return (
             <section id="user-schedule">
                 <h2>Schedule</h2>

@@ -20,11 +20,7 @@ export default class UserHome extends React.Component{
     static contextType = UserContext;
 
     componentDidMount(){
-        console.log("Mounted")
         setTimeout(()=> {
-            console.log("Timeouf")
-            
-            console.log(this.context.requests)
 
             fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
                 headers: {
@@ -40,19 +36,18 @@ export default class UserHome extends React.Component{
                     return res.json();
                 })
                 .then( resData => {
-                    console.log(resData.requests)
                     let futureRequests = resData.requests;
 
                     futureRequests = futureRequests.filter( request => {
-                        if(new Date(request.date) > new Date() && request.confirmed){
+                        if(new Date(request.date) >= new Date() && request.confirmed){
                             return request;
                         };
                     });
 
                     futureRequests.forEach( request => {
                         request.service = this.formatData(request.service);
-                        console.log(request.service)
-                    })
+                        
+                    });
         
                     futureRequests.sort( (a, b) => {
                         let aDate = new Date(a.date);
@@ -98,7 +93,7 @@ export default class UserHome extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log(resData)
+                
                 this.componentDidMount();
             })
             .catch( err => this.setState({ error: err.error}))
@@ -118,7 +113,7 @@ export default class UserHome extends React.Component{
 
     renderUpcomingService = () => {
         let upcomingRequest = this.state.futureRequests;
-        console.log(upcomingRequest)
+       
         upcomingRequest = upcomingRequest.map( (request, index) => {
 
             if(index === 0){
@@ -162,8 +157,8 @@ export default class UserHome extends React.Component{
     };
 
     formatData = (data)=>{
-        console.log(this.context)
         let formatData = data.split("");
+
         if(formatData[1] === "\"" && formatData[formatData.length - 2] === "\""){
             formatData.shift();
             formatData.pop();
@@ -199,7 +194,7 @@ export default class UserHome extends React.Component{
     }
 
     render(){
-        console.log(this.state)
+        
         return (
             <section id="user-home">
 

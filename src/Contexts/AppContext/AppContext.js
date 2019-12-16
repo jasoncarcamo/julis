@@ -34,10 +34,9 @@ export class AppProvider extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                this.setState({ user_id: resData.user.id})
-                console.log(resData.user.id);
+                this.setState({ user_id: resData.user.id});
             })
-            .catch( err => this.setState({ error: err.error}))
+            .catch( err => this.setState({ error: err.error}));
         }
     };
 
@@ -46,7 +45,6 @@ export class AppProvider extends React.Component{
      };
 
     render(){
-        console.log(this.state.error, this.state.user_id)
         const value = {
             user_id: this.state.user_id,
             refreshApp: this.refreshApp

@@ -1,16 +1,19 @@
 #register-section{
-    padding: 0;
+    padding: 3em 0 0 0;
     margin: 0;
     width: 100%;
     text-align: center;
+    background-color: white;
 }
 
 #register-section p{
-    color: pink;
+    display: block;
+    margin-bottom: 3em;
 }
 
 #register-form *{
     display: block;
+    padding: 0;
 }
 
 
@@ -30,27 +33,28 @@
 
 #register-fieldset label{
     margin: 2.5em auto 0 auto;
-    width: 70%;
+    width: 14.5em;
     padding: 0;
-    text-align: left;
-    color: pink;
+    text-align: center;
 }
 
 input[type="tel"]{
-    height: auto !important;
+    height: 3.5em;
+    width: 12em;
     border-top: none !important;
     border-right: none !important;
     border-left: none !important;
-    border-bottom: .06em solid black;
+    background-color: #fafafa;
+    border-radius: .2em;
 }
 
 #register-fieldset input{
     height: 2.5em;
-    margin-top: .5em;
-    width: 100%;
-    background-color: rgb(250, 226, 230);
-    border: .06em solid #8c8c8c;
-    border-radius: .333em;
+    margin: .5em auto 0 auto;
+    width: 18em;
+    background-color: #fafafa;
+    border: .06em solid #eaeaea;
+    border-radius: .2em;
 }
 
 #register-form button {
@@ -58,16 +62,31 @@ input[type="tel"]{
     width: 5.5em;
     height: 3em;
     font-size: 1em;
-    margin: 2em auto;
-    background-color: pink;
+    margin: 3em auto;
+    background-color: skyblue;
     color: white;
     border: none;
     border-radius: .3em;
-    box-shadow: 0 0 .2em pink;
+    box-shadow: 0 0 .2em skyblue;
+}
+
+.register-mobile-number{
+    height: 3em;
+    padding: 0;
 }
 
 @media screen and (max-width: 770px){
     #register-fieldset div{
         grid-template: auto / 1fr;
+    }
+
+    .register-mobile-number{
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    input[type="tel"]{
+        width: 6.5em;
+        margin: 0 1em 0 0;
     }
 }

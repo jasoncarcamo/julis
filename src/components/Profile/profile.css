@@ -2,6 +2,7 @@
     display: grid;
     grid-template: 100% / .6fr 2fr;
     padding: 0;
+    background-color: white;
 }
 
 #profile-section h2{

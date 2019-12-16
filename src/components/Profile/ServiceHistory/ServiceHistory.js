@@ -18,9 +18,6 @@ export default class ServiceHistory extends React.Component{
     componentDidMount(){
 
         setTimeout(()=> {
-            console.log("Timeouf")
-            
-            console.log(this.context.requests)
 
             fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
                 headers: {
@@ -38,12 +35,8 @@ export default class ServiceHistory extends React.Component{
                 .then( resData => {
                     
                     let confirmedRequests = resData.requests;
-                    console.log(confirmedRequests);
-                    confirmedRequests = confirmedRequests.filter( request => {
-                        if(new Date(request.date) < new Date()){
-                            return request;
-                        };
-                    });
+                    
+                    confirmedRequests = confirmedRequests.filter( request => new Date(request.date) < new Date());
 
                     confirmedRequests.sort( (a, b) =>{
                         let aDate = new Date(a.date);
@@ -56,7 +49,6 @@ export default class ServiceHistory extends React.Component{
                         request.service = this.formatData(request.service);
                     });
 
-                    console.log(confirmedRequests);
                     this.setState({ confirmedRequests });
                 })
 
@@ -64,7 +56,6 @@ export default class ServiceHistory extends React.Component{
     }
 
     renderService = (services) => {
-        console.log(services)
         let allServices = services.map( (service, index) => {
 
             return <li key={index} style={{listStyle: "disc"}}>{service.service}</li>
@@ -84,13 +75,9 @@ export default class ServiceHistory extends React.Component{
 
         });
 
-        confirmedRequests = confirmedRequests.filter( request => {
-            if(new Date(request.date) <= new Date()){
-                return request;
-            };
-        });
+        confirmedRequests = confirmedRequests.filter( request => new Date(request.date) <= new Date() );
 
-        if(confirmedRequests.length == 0){
+        if(confirmedRequests.length === 0){
             return <p style={{textAlign: "center"}}>There are no past requests yet. Get started<Link to="/services"> here</Link></p>
         };
 
@@ -122,7 +109,6 @@ export default class ServiceHistory extends React.Component{
             return data;
         };
 
-        console.log(data);
         if(!data){
             return;
         }

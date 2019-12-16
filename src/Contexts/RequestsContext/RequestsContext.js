@@ -45,7 +45,7 @@ export class RequestsProvider extends React.Component{
         let user_id;
 
         if(!TokenService.hasToken()){
-            console.log("Resetting state")
+            
             this.setState({
                 instance: false,
                 services: [],
@@ -75,7 +75,7 @@ export class RequestsProvider extends React.Component{
             })
             .then( resData => {
                 user_id = resData.user.id;
-                console.log(user_id)
+                
                 Promise.all(
                     [
                         fetch("http://localhost:8000/api/services", {
@@ -106,26 +106,22 @@ export class RequestsProvider extends React.Component{
                     let requests = requestsData.requests;
                     
                     requests.forEach( request => {
-                        console.log(request);
+                        
                         request.service = this.formatData(request.service);
                     });
-                    console.log(requests);
 
                     requests = requests.filter( request => {
-                        console.log(user_id);
-                        console.log(request.user_id === Number(user_id));
+                       
                         return request.user_id === Number(user_id);
                     });
-                    console.log(requests)
+                    
                     requests = requests.filter( request => request.confirmed === false);
 
-                    console.log(requests)
 
                     if(requests.length > 0){
-                        console.log("Requests")
                         this.setState({ instance: true});
                     } else{
-                        console.log("No requests");
+                        
                         this.setState({ 
                             instance: false, 
                             requestsId: "", 
@@ -161,17 +157,15 @@ export class RequestsProvider extends React.Component{
             this.requestsHandler(service, price);
         };
 
-        console.log(this.state.requests)
         this.setState({ requests: service, price});
-        console.log(service);
 
     };    
 
     updateDate = (date) => {
         this.setState({date});
-        console.log(date)
+        
         if(this.state.instance){
-            console.log("PATCH", this.state.requestsId);
+            
             fetch("http://localhost:8000/api/requests", {
                 method: "PATCH",
                 headers: {
@@ -198,7 +192,7 @@ export class RequestsProvider extends React.Component{
         this.setState({ time });
 
         if(this.state.instance){
-            console.log("PATCH", this.state.requestsId);
+            
             fetch("http://localhost:8000/api/requests", {
                 method: "PATCH",
                 headers: {
@@ -243,7 +237,6 @@ export class RequestsProvider extends React.Component{
                     return res.json();
                 })
                 .then( resData => {
-                    console.log(resData, "Processed");
                     this.componentDidMount();
                 })
                 .catch( err => this.setState({ error: err.error}));
@@ -282,7 +275,7 @@ export class RequestsProvider extends React.Component{
     requestsHandler = ( service, price ) => {
     
         if(this.state.instance){
-            console.log("PATCH", this.state.requestsId);
+            
             fetch("http://localhost:8000/api/requests", {
                 method: "PATCH",
                 headers: {
@@ -306,7 +299,7 @@ export class RequestsProvider extends React.Component{
                 .then( resData => this.componentDidMount())
                 .catch( err => this.setState({ error: err.error}));
         } else{
-            console.log(this.context.user_id);
+            
             fetch("http://localhost:8000/api/requests", {
                 method: "POST",
                 headers: {
@@ -336,7 +329,7 @@ export class RequestsProvider extends React.Component{
 
     newService = (id) => {
         let price = Number(this.state.price);
-        console.log(this.state.price, this.context)
+        
         fetch("http://localhost:8000/api/requests", {
             method: "POST",
             headers: {
@@ -358,15 +351,15 @@ export class RequestsProvider extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log("POST")
+                
                 this.componentDidMount();
             })
             .catch( err => this.setState({ error: err.error}));
     };
 
     formatData = (data)=>{
-        console.log(this.context)
         let formatData = data.split("");
+
         if(formatData[1] === "\"" && formatData[formatData.length - 2] === "\""){
             formatData.shift();
             formatData.pop();
@@ -402,13 +395,12 @@ export class RequestsProvider extends React.Component{
     }
 
     refreshPage = () => {
-        console.log("Refreshed")
         this.context.refreshApp();
         this.componentDidMount();
     }
 
     render(){
-        console.log(this.state)
+        
         const value = {
             services: this.state.services,
             requests: this.state.requests,

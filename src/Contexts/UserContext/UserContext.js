@@ -57,9 +57,8 @@ export class UserProvider extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                console.log(resData);
                 this.setState({user: resData});
-                console.log("Fetching");
+                
                 fetch(`http://localhost:8000/api/requests/${resData.id}`, {
                     headers: {
                         'authorization': `bearer ${TokenService.getToken()}`
@@ -74,11 +73,8 @@ export class UserProvider extends React.Component{
                         return requestsRes.json();
                     })
                     .then( requestsData => {
-                        console.log(requestsData.requests);
-
                         let requests = requestsData.requests.filter( request => request.confirmed);
 
-                        console.log(requests);
                         this.setState({ requests });
                     })
                     .catch( requestsErr => this.setState({ error: requestsErr.error}));
@@ -129,7 +125,6 @@ export class UserProvider extends React.Component{
     }
 
     render(){
-        console.log(this.state);
         const value = {
             id: this.state.user.id,
             first_name: this.state.user.first_name,                                   
@@ -145,8 +140,6 @@ export class UserProvider extends React.Component{
             requests: this.state.requests,
             refreshUserInfo: this.refreshUserInfo
         };
-
-        console.log(value);
 
         return (
             <UserContext.Provider value={value}>
