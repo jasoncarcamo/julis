@@ -21,7 +21,7 @@ export default class Schedule extends React.Component{
         
         setTimeout(()=> {
 
-            fetch(`http://localhost:8000/api/requests/${this.context.id}`, {
+            fetch(`https://ancient-woodland-95499.herokuapp.com/api/requests/${this.context.id}`, {
                 headers: {
                     'content-type': "application/json",
                     'authorization': `bearer ${TokenService.getToken()}`
@@ -67,7 +67,7 @@ export default class Schedule extends React.Component{
     }
 
     cancelService = (id) => {
-        fetch(`http://localhost:8000/api/requests/${id}`, {
+        fetch(`https://ancient-woodland-95499.herokuapp.com/api/requests/${id}`, {
             method:"DELETE",
             headers: {
                 'content-type': "application/json",

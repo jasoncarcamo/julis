@@ -86,7 +86,7 @@ export default class About extends React.Component{
     sendEmail = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:8000/api/contact", {
+        fetch("https://ancient-woodland-95499.herokuapp.com/api/contact", {
             method: "POST",
             headers: {
                 'content-type': "application/json"

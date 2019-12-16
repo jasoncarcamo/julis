@@ -61,7 +61,7 @@ export class RequestsProvider extends React.Component{
             return;
         };
 
-        fetch("http://localhost:8000/api/users", {
+        fetch("https://ancient-woodland-95499.herokuapp.com/api/users", {
             headers: {
                 'authorization': `bearer ${TokenService.getToken()}`
             }
@@ -78,13 +78,13 @@ export class RequestsProvider extends React.Component{
                 
                 Promise.all(
                     [
-                        fetch("http://localhost:8000/api/services", {
+                        fetch("https://ancient-woodland-95499.herokuapp.com/api/services", {
                             headers: {
                                 'content-type': "application/json",
                                 'authorization': `bearer ${TokenService.getToken()}`
                             }
                         }), 
-                        fetch("http://localhost:8000/api/requests", {
+                        fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                             headers: {
                                 'content-type': "application/json",
                                 'authorization': `bearer ${TokenService.getToken()}`
@@ -166,7 +166,7 @@ export class RequestsProvider extends React.Component{
         
         if(this.state.instance){
             
-            fetch("http://localhost:8000/api/requests", {
+            fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -193,7 +193,7 @@ export class RequestsProvider extends React.Component{
 
         if(this.state.instance){
             
-            fetch("http://localhost:8000/api/requests", {
+            fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -217,7 +217,7 @@ export class RequestsProvider extends React.Component{
 
     completeRequests = () => {
 
-        fetch("http://localhost:8000/api/requests", {
+        fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -246,7 +246,7 @@ export class RequestsProvider extends React.Component{
 
         this.setState({requests: [], price: 0});
 
-        fetch("http://localhost:8000/api/requests", {
+        fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -276,7 +276,7 @@ export class RequestsProvider extends React.Component{
     
         if(this.state.instance){
             
-            fetch("http://localhost:8000/api/requests", {
+            fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -300,7 +300,7 @@ export class RequestsProvider extends React.Component{
                 .catch( err => this.setState({ error: err.error}));
         } else{
             
-            fetch("http://localhost:8000/api/requests", {
+            fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
                 method: "POST",
                 headers: {
                     'content-type': "application/json",
@@ -330,7 +330,7 @@ export class RequestsProvider extends React.Component{
     newService = (id) => {
         let price = Number(this.state.price);
         
-        fetch("http://localhost:8000/api/requests", {
+        fetch("https://ancient-woodland-95499.herokuapp.com/api/requests", {
             method: "POST",
             headers: {
                 'content-type': "application/json",

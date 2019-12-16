@@ -42,7 +42,7 @@ export default class EditAddressForm extends React.Component{
     handleEditForm = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:8000/api/user', {
+        fetch('https://ancient-woodland-95499.herokuapp.com/api/user', {
             method: "PATCH",
             headers: {
                 'content-type': "application/json",

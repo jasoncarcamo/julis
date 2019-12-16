@@ -42,7 +42,7 @@ export default class ContactUs extends React.Component{
     sendEmail = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:8000/api/contact/${this.context.id}`, {
+        fetch(`https://ancient-woodland-95499.herokuapp.com/api/contact/${this.context.id}`, {
             method: "POST",
             headers: {
                 'content-type': "application/json",

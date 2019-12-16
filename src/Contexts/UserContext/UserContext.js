@@ -43,7 +43,7 @@ export class UserProvider extends React.Component{
 
     componentDidMount(){
 
-        return fetch("http://localhost:8000/api/user", {
+        return fetch("https://ancient-woodland-95499.herokuapp.com/api/user", {
             headers: {
                 'content-type': "application/json",
                 'authorization': `bearer ${TokenService.getToken()}`
@@ -59,7 +59,7 @@ export class UserProvider extends React.Component{
             .then( resData => {
                 this.setState({user: resData});
                 
-                fetch(`http://localhost:8000/api/requests/${resData.id}`, {
+                fetch(`https://ancient-woodland-95499.herokuapp.com/api/requests/${resData.id}`, {
                     headers: {
                         'authorization': `bearer ${TokenService.getToken()}`
                     }
