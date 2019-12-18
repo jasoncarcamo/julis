@@ -21,7 +21,7 @@ export class AppProvider extends React.Component{
     componentDidMount(){
 
         if(TokenService.hasToken()){
-            fetch("https://ancient-woodland-95499.herokuapp.com/api/users", {
+            return fetch("https://nameless-beach-67218.herokuapp.com/api/users", {
             headers: {
                 'authorization': `bearer ${TokenService.getToken()}`
             }

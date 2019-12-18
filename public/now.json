@@ -1,6 +1,6 @@
 {
     "version": 2,
-  "name": "julis-cleaning-company",
+  "name": "julis-cleaning-service",
   "routes": [
       {
         "src": "^/static/(.*)",

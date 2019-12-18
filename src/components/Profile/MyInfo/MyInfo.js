@@ -33,7 +33,7 @@ export default class MyInfo extends React.Component{
     handlePasswordreset = (e)=> {
         e.preventDefault();
 
-        fetch("https://ancient-woodland-95499.herokuapp.com/api/reset", {
+        return fetch("https://nameless-beach-67218.herokuapp.com/api/reset", {
             method: "POST",
             headers: {
                 'content-type': "application/json",

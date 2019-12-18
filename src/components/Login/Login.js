@@ -24,8 +24,6 @@ export default class extends React.Component{
     }
 
     handleInput = (e)=>{
-        e.preventDefault();
-
         this.setState({ [e.target.name]: e.target.value})
     }
 
@@ -36,7 +34,7 @@ export default class extends React.Component{
     handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("https://ancient-woodland-95499.herokuapp.com/api/login", {
+        return fetch("https://nameless-beach-67218.herokuapp.com/api/login", {
             method: "POST",
             headers: {
                 'content-type': "application/json"
@@ -47,11 +45,11 @@ export default class extends React.Component{
                 if(!res.ok){
                     return res.json().then( e => Promise.reject(e));
                 };
-
+                console.log(res)
                 return res.json();
             })
             .then( resData => {
-                
+                console.log(resData)
                 TokenService.saveToken(resData.token);
                 this.context.refreshPage();
                 this.props.history.push("/user")

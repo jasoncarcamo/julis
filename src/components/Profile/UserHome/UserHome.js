@@ -22,7 +22,7 @@ export default class UserHome extends React.Component{
     componentDidMount(){
         setTimeout(()=> {
 
-            fetch(`https://ancient-woodland-95499.herokuapp.com/api/requests/${this.context.id}`, {
+            return fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
                 headers: {
                     'content-type': "application/json",
                     'authorization': `bearer ${TokenService.getToken()}`
@@ -78,7 +78,7 @@ export default class UserHome extends React.Component{
     }
 
     cancelService = () => {
-        fetch(`https://ancient-woodland-95499.herokuapp.com/api/requests/${this.state.requestId}`, {
+        return fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.state.requestId}`, {
             method:"DELETE",
             headers: {
                 'content-type': "application/json",

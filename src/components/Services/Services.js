@@ -28,7 +28,7 @@ export default class Services extends React.Component{
         let initialCleaning = document.getElementById("initial-cleaning-input");
         let services = document.getElementsByClassName("service-checkboxes");
         
-        fetch("https://ancient-woodland-95499.herokuapp.com/api/services", {
+        return fetch("https://nameless-beach-67218.herokuapp.com/api/services", {
             headers: {
                 'content-type': "application/json",
             }
