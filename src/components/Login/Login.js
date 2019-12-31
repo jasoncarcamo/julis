@@ -11,6 +11,7 @@ export default class extends React.Component{
         this.state = {
             mobile_number: "",
             password: "",
+            isLoading: false,
             error: ""
         };
     };
@@ -34,6 +35,8 @@ export default class extends React.Component{
     handleSubmit = (e) => {
         e.preventDefault();
 
+        this.setState({ isLoading: !this.state.isLoading});
+
         return fetch("https://nameless-beach-67218.herokuapp.com/api/login", {
             method: "POST",
             headers: {
@@ -45,11 +48,22 @@ export default class extends React.Component{
                 if(!res.ok){
                     return res.json().then( e => Promise.reject(e));
                 };
-                console.log(res)
+                
                 return res.json();
             })
             .then( resData => {
-                console.log(resData)
+
+                this.setState({ isLoading: !this.state.isLoading});
+
+                if(resData.adminToken){
+                   
+                    TokenService.saveAdminToken(resData.adminToken);
+
+                    this.props.history.push("/admin");
+
+                    return;
+                };
+
                 TokenService.saveToken(resData.token);
                 this.context.refreshPage();
                 this.props.history.push("/user")
@@ -85,7 +99,8 @@ export default class extends React.Component{
                                 name="password"
                                 onChange={this.handleInput}
                                 required></input>
-
+                        
+                        {this.state.isLoading ? <p style={{textAlign: "center"}}>Loading</p> : ""}
                         {this.state.error ? <p>{this.state.error}</p> : ""}
                         <button type="submit">Log In</button>
                     </fieldset>

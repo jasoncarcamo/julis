@@ -26,6 +26,7 @@ export default class NavBar extends React.Component{
 
     handleSignOut = () => {
         TokenService.deleteToken();
+        TokenService.deleteAdminToken();
         this.handleMobileNav();
         this.context.refreshPage();
     }
@@ -41,6 +42,28 @@ export default class NavBar extends React.Component{
                         className="Link"
                         onClick={this.handleMobileNav}
                         >Profile</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink 
+                            to="/" 
+                            className="Link"
+                            onClick={this.handleSignOut}
+                        >Sign out</NavLink>
+                    </li>
+                    
+                </>
+            );
+        } else if(TokenService.hasAdminToken()){
+            return (
+                <>
+                    <li>
+                        <NavLink 
+                        to="/admin" 
+                        activeStyle={{ fontWeight: "bold"}}
+                        className="Link"
+                        onClick={this.handleMobileNav}
+                        >Admin</NavLink>
                     </li>
 
                     <li>
@@ -81,6 +104,7 @@ export default class NavBar extends React.Component{
         if(this.context.requests){
             
             if(this.context.requests.length > 0){
+                
                 return this.context.requests.length;
             } else{
                 return "";

@@ -60,8 +60,8 @@ export class RequestsProvider extends React.Component{
 
             return;
         };
-
-        return fetch("https://nameless-beach-67218.herokuapp.com/api/users", {
+        
+        fetch("https://nameless-beach-67218.herokuapp.com/api/users", {
             headers: {
                 'authorization': `bearer ${TokenService.getToken()}`
             }
@@ -74,8 +74,9 @@ export class RequestsProvider extends React.Component{
                 return res.json();
             })
             .then( resData => {
-                user_id = resData.user.id;
                 
+                user_id = resData.user.id;
+               
                 Promise.all(
                     [
                         fetch("https://nameless-beach-67218.herokuapp.com/api/services", {
@@ -103,8 +104,9 @@ export class RequestsProvider extends React.Component{
                     return Promise.all([ serviceRes.json(), requestsRes.json()]);
                 })
                 .then( ([ serviceData, requestsData]) => {
+
                     let requests = requestsData.requests;
-                    
+                  
                     requests.forEach( request => {
                         
                         request.service = this.formatData(request.service);
@@ -112,12 +114,11 @@ export class RequestsProvider extends React.Component{
 
                     requests = requests.filter( request => {
                        
-                        return request.user_id === Number(user_id);
+                        return Number(request.user_id) === Number(user_id);
                     });
                     
                     requests = requests.filter( request => request.confirmed === false);
-
-
+                    
                     if(requests.length > 0){
                         this.setState({ instance: true});
                     } else{
@@ -131,10 +132,10 @@ export class RequestsProvider extends React.Component{
                             requests: []
                         });
                     }
-
+                    
                     this.setState({ 
                         services: serviceData.services, 
-                        requests: requests[0].service, 
+                        requests: requests[0].service || [], 
                         date: requests[0].date,
                         time: requests[0].time,
                         user_id: this.context.user_id,
@@ -151,7 +152,6 @@ export class RequestsProvider extends React.Component{
     };
 
     updateServices = (service, price) => {
-        
 
         if(TokenService.hasToken()){
             this.requestsHandler(service, price);
@@ -166,7 +166,7 @@ export class RequestsProvider extends React.Component{
         
         if(this.state.instance){
             
-            return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+            fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -193,7 +193,7 @@ export class RequestsProvider extends React.Component{
 
         if(this.state.instance){
             
-            return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+            fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -216,8 +216,8 @@ export class RequestsProvider extends React.Component{
     }
 
     completeRequests = () => {
-
-        return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+        
+        fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -237,6 +237,7 @@ export class RequestsProvider extends React.Component{
                     return res.json();
                 })
                 .then( resData => {
+                   
                     this.componentDidMount();
                 })
                 .catch( err => this.setState({ error: err.error}));
@@ -246,7 +247,7 @@ export class RequestsProvider extends React.Component{
 
         this.setState({requests: [], price: 0});
 
-        return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+        fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -276,7 +277,7 @@ export class RequestsProvider extends React.Component{
     
         if(this.state.instance){
             
-            return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+            fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
                 method: "PATCH",
                 headers: {
                     'content-type': "application/json",
@@ -296,11 +297,14 @@ export class RequestsProvider extends React.Component{
 
                     return res.json();
                 })
-                .then( resData => this.componentDidMount())
+                .then( resData => {
+                   
+                    this.componentDidMount()
+                })
                 .catch( err => this.setState({ error: err.error}));
         } else{
             
-            return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+            fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
                 method: "POST",
                 headers: {
                     'content-type': "application/json",
@@ -321,7 +325,8 @@ export class RequestsProvider extends React.Component{
                     return res.json();
                 })
                 .then( resData => {
-                    return this.componentDidMount();
+                    
+                    this.componentDidMount();
                 })
                 .catch( err => this.setState({ error: err.error}));
         }
@@ -330,7 +335,7 @@ export class RequestsProvider extends React.Component{
     newService = (id) => {
         let price = Number(this.state.price);
         
-        return fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+        fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
             method: "POST",
             headers: {
                 'content-type': "application/json",
@@ -416,7 +421,7 @@ export class RequestsProvider extends React.Component{
             completeRequests: this.completeRequests,
             price: this.state.price
         };
-
+        
         return (
             <RequestsContext.Provider value={value}>
                 {this.props.children}

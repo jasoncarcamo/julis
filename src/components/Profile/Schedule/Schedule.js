@@ -21,7 +21,7 @@ export default class Schedule extends React.Component{
         
         setTimeout(()=> {
 
-            return fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
+            fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
                 headers: {
                     'content-type': "application/json",
                     'authorization': `bearer ${TokenService.getToken()}`
@@ -38,7 +38,7 @@ export default class Schedule extends React.Component{
                     let futureRequests = resData.requests;
 
                     futureRequests = futureRequests.filter( request => {
-                        if(new Date(request.date) > new Date() && request.confirmed){
+                        if(new Date(request.date) > new Date() && request.confirmed || new Date(request.date).toDateString() === new Date().toDateString() && request.confirmed){
                             return request;
                         };
                     });
@@ -58,7 +58,7 @@ export default class Schedule extends React.Component{
                     this.setState({ futureRequests });
                 })
 
-        }, 300);
+        }, 400);
         
     };
 

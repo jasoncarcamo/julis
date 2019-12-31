@@ -137,6 +137,7 @@ export default class Confirm extends React.Component{
     };
 
     handleSubmit = (e) => {
+        
         this.context.completeRequests();
         this.setState({ complete: true});
 

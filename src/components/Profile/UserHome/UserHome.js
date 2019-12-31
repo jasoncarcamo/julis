@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import UserContext from "../../../Contexts/UserContext/UserContext";
-import { setTimeout } from "timers";
 import "./UserHome.css";
 import TokenService from '../../../TokenService/TokenService';
 
@@ -20,9 +19,10 @@ export default class UserHome extends React.Component{
     static contextType = UserContext;
 
     componentDidMount(){
-        setTimeout(()=> {
-
-            return fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
+        
+        setTimeout(()=>{
+            
+            fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
                 headers: {
                     'content-type': "application/json",
                     'authorization': `bearer ${TokenService.getToken()}`
@@ -39,9 +39,11 @@ export default class UserHome extends React.Component{
                     let futureRequests = resData.requests;
 
                     futureRequests = futureRequests.filter( request => {
-                        if(new Date(request.date) >= new Date() && request.confirmed){
+
+                        if(new Date(request.date) > new Date() && request.confirmed || new Date(request.date).toDateString() === new Date().toDateString() && request.confirmed){
                             return request;
                         };
+
                     });
 
                     futureRequests.forEach( request => {
@@ -54,6 +56,11 @@ export default class UserHome extends React.Component{
                         let bDate = new Date(b.date);
         
                         return aDate - bDate;
+                    });
+
+                    futureRequests.sort( (a, b)=>{
+                        console.log(new Date(a.time), new Date(b.time))
+                        return a.time - b.time;
                     });
         
                     if(futureRequests.length === 0){
@@ -68,9 +75,8 @@ export default class UserHome extends React.Component{
                     };
         
                     this.setState({requestId: futureRequests[0].id, futureRequests, loading: false });
-                })
-
-        }, 500);
+                });
+        }, 400)
     };
 
     handleCancel = () => {
@@ -78,7 +84,7 @@ export default class UserHome extends React.Component{
     }
 
     cancelService = () => {
-        return fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.state.requestId}`, {
+        fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.state.requestId}`, {
             method:"DELETE",
             headers: {
                 'content-type': "application/json",

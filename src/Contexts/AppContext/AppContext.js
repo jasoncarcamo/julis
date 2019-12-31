@@ -21,8 +21,10 @@ export class AppProvider extends React.Component{
     componentDidMount(){
 
         if(TokenService.hasToken()){
-            return fetch("https://nameless-beach-67218.herokuapp.com/api/users", {
+            
+            fetch("https://nameless-beach-67218.herokuapp.com/api/users", {
             headers: {
+                'content-type': "application/json",
                 'authorization': `bearer ${TokenService.getToken()}`
             }
         })
@@ -34,6 +36,7 @@ export class AppProvider extends React.Component{
                 return res.json();
             })
             .then( resData => {
+                
                 this.setState({ user_id: resData.user.id});
             })
             .catch( err => this.setState({ error: err.error}));
@@ -50,6 +53,7 @@ export class AppProvider extends React.Component{
             refreshApp: this.refreshApp
         };
 
+        
         return (
             <AppContext.Provider value={value}>
                 {this.props.children}

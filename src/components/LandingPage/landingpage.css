@@ -45,16 +45,18 @@
     padding: 2.1em 0;
 }
 
-#first-section > section > section button{
+#first-section > section > section a{
     display: block;
     width: 13.1em;
     height: 2.55em;
     font-size: 1.63em;
     text-align: center;
     margin: -1.7em auto 2.2em auto;
+    padding: 1em 0 0 0;
     border: .10em solid white;
     color: white;
     background-color: pink;
+    text-decoration: none;
 }
 
 /* Second section */
@@ -196,11 +198,14 @@
 
 .to-services-btn2{
     display: block;
-    font-size: .9em;
+    text-align: center;
+    font-size: 1em;
     width: 8.62em;
     height: 2.5em;
     border-radius: .2em;;
     margin: 3.1em 10em 0 1em;
+    padding: .8em 0 0 0;
+    text-decoration: none;
     border: none;
     background-color: white;
     color: orangered;
@@ -247,13 +252,14 @@
         padding: 2.4em 1.5em;
     }
     
-    #first-section > section > section button{
+    #first-section > section > section a{
         display: block;
         width: 15.02em;
         height: 3.55em;
         font-size: 1em;
         text-align: center;
         margin: -.5em auto 2.6em auto;
+        padding-top: 2em;
         border: .15em solid white;
         color: white;
         background-color: pink;

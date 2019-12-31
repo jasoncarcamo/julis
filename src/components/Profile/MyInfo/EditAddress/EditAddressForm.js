@@ -66,7 +66,7 @@ export default class EditAddressForm extends React.Component{
             })
             .then( resData => {
                 
-                this.setState({ resetAddress: !this.state.resetAddress, resetSuccess: "Hello"})
+                this.setState({ resetAddress: !this.state.resetAddress, resetSuccess: "Your address has been changed"})
                 this.context.refreshUserInfo();
             })
             .catch( err => this.setState({ error: err.error}))

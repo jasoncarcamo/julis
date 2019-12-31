@@ -21,9 +21,7 @@ export default class LandingPage extends React.Component{
 
                             <p>We Are Proud To Use Environmentally-Conscious Products That Are Safe For People And Pets.</p>
                             
-                            <form action="tel:6315263306" method="GET">
-                                <button typr="submit">(631) 526 - 3306</button>
-                            </form>
+                            <a href="tel:6315263306">(631) 526 - 3306</a>
                         </section>
                     </section>
                 </section>
@@ -120,9 +118,7 @@ export default class LandingPage extends React.Component{
                 <section id="fifth-section">
                     <p>Schedule Your Cleaning Now & Get A Free Estimate</p>
 
-                    <form action="tel:+1631-526-3306"  method="GET">
-                        <button className="to-services-btn2" type="submit">Call now</button>
-                    </form>
+                    <a href="tel:+1631-526-3306" className="to-services-btn2">Call now</a>
                 </section>
 
             </section>

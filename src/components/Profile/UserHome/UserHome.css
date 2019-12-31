@@ -19,8 +19,14 @@
 #user-home button{
     display: block;
     width: 5.5em;
+    height: 3em;
     font-size: 1em;
     margin: 1em auto;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: .3em;
+    box-shadow: 0 0 .2em skyblue;
 }
 
 @media screen and (max-width: 770px){

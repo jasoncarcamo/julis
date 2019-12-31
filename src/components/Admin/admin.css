@@ -1,0 +1,50 @@
+#admin-section{
+    padding: 0;
+    background-color: white;
+}
+
+#admin-section > div{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    text-align: center;
+}
+
+#admin-section > div > p{
+    cursor: pointer;
+    margin: 1.1em auto;
+    padding: 0;
+}
+
+#admin-section > ul{
+    margin: 0 0 0 0;
+    padding: 2em 0 0 0;
+    text-align: center;
+}
+
+#admin-unconfirmed-requests{
+    display: none;
+}
+
+#admin-confirmed-requests{
+    display: none;
+}
+
+.show-requests{
+    display: block !important
+}
+
+.active-requests{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#admin-section > ul > li{
+    
+}
+
+@media screen and (max-width: 770px){
+    #admin-section > ul > li{
+        width: 80%;
+    }
+}

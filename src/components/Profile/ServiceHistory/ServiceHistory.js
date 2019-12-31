@@ -19,7 +19,7 @@ export default class ServiceHistory extends React.Component{
 
         setTimeout(()=> {
 
-            return fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
+            fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.context.id}`, {
                 headers: {
                     'content-type': "application/json",
                     'authorization': `bearer ${TokenService.getToken()}`
@@ -52,13 +52,14 @@ export default class ServiceHistory extends React.Component{
                     this.setState({ confirmedRequests });
                 })
 
-        }, 300);
+        }, 400);
     }
 
     renderService = (services) => {
+        
         let allServices = services.map( (service, index) => {
 
-            return <li key={index} style={{listStyle: "disc"}}>{service.service}</li>
+            return <li key={index} style={{listStyle: "disc"}}>{service.service ? service.service : ""}</li>
         });
 
         return allServices;
@@ -74,8 +75,8 @@ export default class ServiceHistory extends React.Component{
             return bDate - aDate;
 
         });
-
-        confirmedRequests = confirmedRequests.filter( request => new Date(request.date) <= new Date() );
+        
+        confirmedRequests = confirmedRequests.filter( request => new Date(request.date) <= new Date() && request.confirmed);
 
         if(confirmedRequests.length === 0){
             return <p style={{textAlign: "center"}}>There are no past requests yet. Get started<Link to="/services"> here</Link></p>
@@ -90,7 +91,7 @@ export default class ServiceHistory extends React.Component{
 
                     <p><strong>Services:</strong></p>
                     <ul>
-                        {this.renderService(request.service)}
+                        {!request.service ? "" : this.renderService(request.service)}
                     </ul>
 
                     <p><strong>Date created:</strong> {new Date(request.date_created).toDateString()}</p>

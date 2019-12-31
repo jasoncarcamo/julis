@@ -28,7 +28,7 @@ export default class Services extends React.Component{
         let initialCleaning = document.getElementById("initial-cleaning-input");
         let services = document.getElementsByClassName("service-checkboxes");
         
-        return fetch("https://nameless-beach-67218.herokuapp.com/api/services", {
+        fetch("https://nameless-beach-67218.herokuapp.com/api/services", {
             headers: {
                 'content-type': "application/json",
             }
@@ -41,11 +41,11 @@ export default class Services extends React.Component{
                 return res.json();
             })
             .then( resData => {
-    
+
                 this.setState({ 
                     services: resData.services,
                     date: new Date(this.context.date),
-                    time: this.convertTime(this.context.time),
+                    time: this.convertTime(this.context.time) || "",
                 });
 
                 if(this.context.requests){
@@ -113,7 +113,7 @@ export default class Services extends React.Component{
         } else if(day === "A" && realTime[0] === "12"){
             realTime[0] = "00";
         };       
-
+        
         return realTime.join(":");
     }
 
@@ -126,9 +126,9 @@ export default class Services extends React.Component{
     }
 
     updateServices = (e) => {
-
-        let service = this.state.requests;
-        let price = Number(this.state.price);
+        
+        let service = this.context.requests;
+        let price = Number(this.context.price);
         let services = document.getElementsByClassName("service-checkboxes");
 
         if(e.target.checked){

@@ -21,6 +21,7 @@ export default class Register extends React.Component{
             city: "", 
             state: "", 
             zip_code: "",
+            isLoading: false,
             error: ""
         };
     };
@@ -135,6 +136,8 @@ export default class Register extends React.Component{
     handleSubmit = (e) => {
         e.preventDefault();
 
+        this.setState({ isLoading: !this.state.isLoading});
+
         return fetch("https://nameless-beach-67218.herokuapp.com/api/register", {
             method: "POST",
             headers: {
@@ -163,6 +166,7 @@ export default class Register extends React.Component{
             })
             .then( resData => {
 
+                this.setState({ isLoading: !this.state.isLoading});
                 TokenService.saveToken(resData.token)
                 this.context.refreshPage();
                 this.context.newService(resData.id);
@@ -219,6 +223,8 @@ export default class Register extends React.Component{
                         <div>
                             {this.renderInputs()}
                         </div>
+
+                        {this.state.isLoading ? <p style={{textAlign: "center"}}>Loading</p> : ""}
                         {this.state.error ? <p>{this.state.error}</p> : ""}
                         <button type="submit">Sign up</button>
                     </fieldset>

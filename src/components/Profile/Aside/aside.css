@@ -26,6 +26,8 @@
 
 @media screen and (max-width:770px){
     #aside-section{
+        border-bottom: .06em solid black;
+        border-right: none;
         height: 4em;
     }
 
