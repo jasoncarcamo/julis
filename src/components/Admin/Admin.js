@@ -14,6 +14,40 @@ export default class Admin extends React.Component{
         };
     };
 
+    UNSAFE_componentWillMount(){
+        fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
+            headers: {
+                'content-type': "application/json",
+                'authorization': `bearer ${TokenService.getAdminToken()}`
+            }
+        })
+            .then( res => {
+                if(!res.ok){
+                    return res.json().then( e => Promise.reject(e));
+                };
+
+                return res.json();
+            })
+            .then( resData => {
+                let requests = resData.adminRequests;
+                let confirmedRequests;
+                
+                requests.forEach( data => {
+
+                    data.service = this.formatData(data.service);
+
+                });
+
+                confirmedRequests = requests.filter( request => request.admin_confirmed === true );
+                requests = requests.filter( request => !request.admin_confirmed);
+                
+               
+                this.setState({ requests, confirmedRequests });
+                
+            })
+            .catch( err => this.setState({ error: err.error}));
+    };    
+
     componentDidMount(){
         fetch("https://nameless-beach-67218.herokuapp.com/api/requests", {
             headers: {
@@ -55,12 +89,12 @@ export default class Admin extends React.Component{
             return new Date(a.date) - new Date(b.date);
         });
 
-        requests = requests.filter( request => new Date(request.date).toDateString() == new Date().toDateString() || new Date(request.date) > new Date());
+        requests = requests.filter( request => new Date(request.date).toDateString() === new Date().toDateString() || new Date(request.date) > new Date());
         
         requests = requests.map( (request, index) => {
             return <RequestList key={index} request={request} refreshAdmin={this.refreshAdmin}></RequestList>
         });
-
+        
         return requests;
     }
 
@@ -71,7 +105,7 @@ export default class Admin extends React.Component{
             return new Date(a.date) - new Date(b.date);
         });
 
-        confirmedRequests = confirmedRequests.filter( request => new Date(request.date).toDateString() == new Date().toDateString() || new Date(request.date) > new Date());
+        confirmedRequests = confirmedRequests.filter( request => new Date(request.date).toDateString() === new Date().toDateString() || new Date(request.date) > new Date());
         
         confirmedRequests = confirmedRequests.map( (request, index) => {
             return <RequestList key={index} request={request} refreshAdmin={this.refreshAdmin}></RequestList>
@@ -92,17 +126,17 @@ export default class Admin extends React.Component{
                 linkIndex = index;
             }
         });
-        
-        e.target.classList.toggle("active-requests");
+
+        e.target.classList.add("active-requests");
 
         if(linkIndex === 0){
             confirmedRequestsSection.classList.remove("show-requests");
-            unconfirmedRequestsSection.classList.toggle("show-requests");
+            unconfirmedRequestsSection.classList.add("show-requests");
         };
 
         if(linkIndex === 1){
             unconfirmedRequestsSection.classList.remove("show-requests");
-            confirmedRequestsSection.classList.toggle("show-requests");
+            confirmedRequestsSection.classList.add("show-requests");
         }
 
     }

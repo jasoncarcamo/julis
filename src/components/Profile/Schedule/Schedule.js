@@ -104,7 +104,7 @@ export default class Schedule extends React.Component{
     renderFutureRequests = () => {
         let futureRequests = this.state.futureRequests;
 
-        if(futureRequests.length == 0){
+        if(futureRequests.length === 0){
             return <p style={{textAlign: "center"}}>You do not have any services coming up. Get started<Link to="/services"> here</Link></p>
         };
 
@@ -120,8 +120,6 @@ export default class Schedule extends React.Component{
                     </ul>
 
                     <p><strong>Date created:</strong> {new Date(request.date_created).toDateString()}</p>
-
-                    <p><strong>Price:</strong> ${request.price} / hour</p>
 
                     <div>
                         <p>* Cancellation must be 24 hours in advanced. Failure to do so will result in a cancellation fee</p>

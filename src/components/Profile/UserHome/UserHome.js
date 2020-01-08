@@ -57,11 +57,6 @@ export default class UserHome extends React.Component{
         
                         return aDate - bDate;
                     });
-
-                    futureRequests.sort( (a, b)=>{
-                        console.log(new Date(a.time), new Date(b.time))
-                        return a.time - b.time;
-                    });
         
                     if(futureRequests.length === 0){
                         this.setState({
@@ -80,8 +75,8 @@ export default class UserHome extends React.Component{
     };
 
     handleCancel = () => {
-        this.setState({ canceling: !this.state.canceling})
-    }
+        this.setState({ canceling: !this.state.canceling});
+    };
 
     cancelService = () => {
         fetch(`https://nameless-beach-67218.herokuapp.com/api/requests/${this.state.requestId}`, {
@@ -136,8 +131,6 @@ export default class UserHome extends React.Component{
                         </ul>
 
                         <p><strong>Date created:</strong> {new Date(request.date_created).toDateString()}</p>
-    
-                        <p><strong>Price:</strong> ${request.price} / hour</p>
                         
                         <div>
                             <p>* Cancellation must be 24 hours in advanced. Failure to do so will result in a cancellation fee</p>

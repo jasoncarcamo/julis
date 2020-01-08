@@ -54,6 +54,11 @@ export default class Register extends React.Component{
         }
 
         inputList = inputList.map( (name, index) => {
+    
+            if(name === "IsLoading"){
+                return;
+            };
+
             return (
                 
                 <label 

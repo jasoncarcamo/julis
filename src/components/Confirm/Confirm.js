@@ -54,8 +54,6 @@ export default class Confirm extends React.Component{
                         <p style={{marginTop: "2em"}}>Set for</p>
                         <p>{new Date(this.context.date).toDateString()} at {this.context.time ? this.context.time : <p><strong>The time is needed. Edit your your request to include the time</strong></p>}</p>
 
-                        <p> ${this.state.price}</p>
-
                         {this.state.cancel ? <p>Are you sure?</p> : ""}
                         {this.state.confirm ? <p>Confirm?</p> : ""}
                         

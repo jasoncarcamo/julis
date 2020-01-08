@@ -96,8 +96,6 @@ export default class ServiceHistory extends React.Component{
 
                     <p><strong>Date created:</strong> {new Date(request.date_created).toDateString()}</p>
 
-                    <p><strong>Price:</strong> ${request.price} / hour</p>
-
                 </li>
             );
         });

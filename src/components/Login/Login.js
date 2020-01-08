@@ -68,7 +68,7 @@ export default class extends React.Component{
                 this.context.refreshPage();
                 this.props.history.push("/user")
             })
-            .catch( err => this.setState({ error: err.error}));
+            .catch( err => this.setState({ error: err.error, isLoading: false}));
     };
 
     render(){

@@ -53,7 +53,7 @@ export default class LandingPage extends React.Component{
                             </p>
 
                             <p className="pitch">
-                            Our experts provide detailed cleaning services for our valued customers, designed to keep your property looking its best all year round. We offer different cleaning frequencies according to your needs and preferences, including every week, every two weeks, every three weeks, every four weeks, monthly, and occasional or one-time cleans.
+                            Our experts provide detailed cleaning services for our valued customers, designed to keep your property looking its best all year round. We offer different cleaning frequencies according to your needs and preferences, including every week, every two weeks, monthly, and occasional or one-time cleans.
                             </p>
 
                             <p className="pitch-header">What Makes The Cleaning Authority Different?</p>

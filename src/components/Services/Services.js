@@ -289,8 +289,6 @@ export default class Services extends React.Component{
 
                 </section>
 
-                <p id="custom-price">${this.state.price ? this.state.price + " / hour" : this.state.price}</p>
-
                 <form className="confirm-form" onSubmit={this.handleCheckout}>
                     <fieldset>
                         
@@ -302,7 +300,7 @@ export default class Services extends React.Component{
                                 className="react-date-picker"
                                 value={this.state.date}
                                 onChange={this.handleDate}
-                                 
+                                minDate={new Date()}
                                 required/>
 
                         <label htmlFor="react-time">
