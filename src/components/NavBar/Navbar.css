@@ -84,7 +84,7 @@ nav li{
         position: relative;
         z-index: 4;
         padding: 0;
-        margin: auto 1.1em auto 0;
+        margin: auto .6em auto 0;
     }
 
     #close-links{

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Navbar.css";
+import"./hamburger.css";
 import {NavLink, Link} from "react-router-dom";
 import TokenService from "../../TokenService/TokenService";
 import RequestsContext from "../../Contexts/RequestsContext/RequestsContext";
@@ -19,8 +20,7 @@ export default class NavBar extends React.Component{
             e.preventDefault();
         });
 
-        burger.classList.toggle("hide-burger");
-        closeLinks.classList.toggle("show-close-links");
+        burger.classList.toggle("is-active");
         navLinks.classList.toggle("display-nav");
     }
 
@@ -134,15 +134,11 @@ export default class NavBar extends React.Component{
                         <FontAwesomeIcon className="home-icon" icon={faHome}></FontAwesomeIcon>
                     </Link>
 
-                    <div id="nav-burger" onClick={this.handleMobileNav}>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-
-                    <div id="close-links" onClick={this.handleMobileNav}>
-                        X
-                    </div>
+                    <button id="nav-burger" onClick={this.handleMobileNav} className="hamburger hamburger--collapse" type="button">
+                        <span className="hamburger-box" >
+                            <span className="hamburger-inner"></span>
+                        </span>
+                    </button>
 
                     <ul id="nav-links">
                         <li>
