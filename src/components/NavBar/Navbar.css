@@ -79,6 +79,25 @@ nav li{
 }
 
 @media screen and (max-width: 770px){
+
+    button:hover{
+        border: none !important;    
+    }
+
+    button:focus{
+        border: none !important;
+    }
+
+    
+    #nav-burger:hover{
+        border: none !important;    
+    }
+
+    #nav-burger:focus{
+        border: none !important;
+    }
+
+
     #nav-burger{
         display: block;
         position: relative;

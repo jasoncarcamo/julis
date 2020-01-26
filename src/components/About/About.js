@@ -130,7 +130,7 @@ export default class About extends React.Component{
                     <p>2 Madison ave</p>
                     <p>Amityville, NY 11701</p>
                     
-                    <p>(631) 526-3306   </p>
+                    <p>(631) 526-3306</p>
                 </section>       
 
                 <section id="contact-us-section">
@@ -147,7 +147,7 @@ export default class About extends React.Component{
                         </li>
 
                         <li className="contact-us-list">
-                            <p>Cash Free Payment</p>
+                            <p>Cash Payments</p>
                         </li>
                     </ul>
                 </section>

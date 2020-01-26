@@ -18,6 +18,10 @@ code {
     monospace;
 }
 
+button{
+  cursor: pointer;
+}
+
 @media screen and (max-wdith: 770px){
     body{
         font-size: 16px;
